@@ -1,0 +1,364 @@
+openapi: 3.1.0
+info:
+  title: PersistIQ Campaigns API
+  version: v1
+  description: The PersistIQ API is a REST API for the PersistIQ sales engagement platform. It exposes users, leads (prospects), lead statuses and fields, campaigns (including adding and removing leads), activity events, and Do Not Contact (DNC) domains. Authentication is a company-wide API key sent in the `x-api-key` request header. Responses are JSON with a `status`/`errors` envelope, cursor pagination via `has_more` + `next_page`, and a per-key rate limit of 100 requests per minute surfaced through `X-RateLimit-*` headers. This specification was derived faithfully from PersistIQ's published API reference (apidocs.persistiq.com) and captures the documented request and response surface; it is not an official PersistIQ-published OpenAPI file.
+  contact:
+    name: PersistIQ
+    url: https://persistiq.com
+  x-apisjson-generated: '2026-07-20'
+  x-apisjson-method: derived
+  x-apisjson-source: https://apidocs.persistiq.com/
+servers:
+- url: https://api.persistiq.com
+  description: Production
+security:
+- ApiKeyAuth: []
+tags:
+- name: Campaigns
+  description: Outreach campaigns
+paths:
+  /v1/campaigns:
+    get:
+      operationId: listCampaigns
+      summary: List campaigns
+      description: Retrieves campaigns. Each response contains a maximum of 100 campaigns; when more exist, `has_more` is true and `next_page` holds the next URL.
+      tags:
+      - Campaigns
+      parameters:
+      - name: lead_id
+        in: query
+        required: false
+        description: Campaigns which the lead belongs to.
+        schema:
+          type: string
+      - name: owner_id
+        in: query
+        required: false
+        description: Campaigns with owner that has the specified ID.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        description: Campaigns with the specified name.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A page of campaigns
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errors:
+                    type: array
+                    items: {}
+                  has_more:
+                    type: boolean
+                  next_page:
+                    type:
+                    - string
+                    - 'null'
+                  campaigns:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Campaign'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /v1/campaigns/{campaign_id}/leads:
+    post:
+      operationId: addLeadsToCampaign
+      summary: Add leads to a campaign
+      description: Adds up to 100 leads to a campaign. If more than 100 lead ids are provided, the API responds with 400 Bad Request.
+      tags:
+      - Campaigns
+      parameters:
+      - name: campaign_id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: c_9lWrpz
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mailbox_id:
+                  type: string
+                  description: ID of the mailbox to which the lead should be added.
+                lead_id:
+                  type: string
+                  description: A single lead id (required if `leads` is not given).
+                leads:
+                  type: array
+                  description: Array of lead ids (required if `lead_id` is not given).
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+      responses:
+        '200':
+          description: Campaign leads created (with per-lead errors, if any)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errors:
+                    type: array
+                    items: {}
+                  campaign_leads:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CampaignLead'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /v1/campaigns/{campaign_id}/leads/{lead_id}:
+    delete:
+      operationId: removeLeadFromCampaign
+      summary: Remove a lead from a campaign
+      tags:
+      - Campaigns
+      parameters:
+      - name: campaign_id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: c_9lWrpz
+      - name: lead_id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: l_9N2XDp
+      responses:
+        '200':
+          description: Lead removed from campaign
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    TooManyRequests:
+      description: Too Many Requests - more than 100 requests were sent in one minute.
+      headers:
+        X-RateLimit-Limit:
+          description: Maximum allowed requests per minute.
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          description: Requests left for the current window.
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          description: UTC epoch seconds when the window resets.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - your API key is wrong
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad Request - missing a required parameter
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not Found - the specified data could not be found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    CampaignLead:
+      type: object
+      properties:
+        id:
+          type: string
+          example: cl_abc001
+        campaign_id:
+          type: string
+        mailbox_id:
+          type: string
+        lead:
+          $ref: '#/components/schemas/Lead'
+    Campaign:
+      type: object
+      properties:
+        id:
+          type: string
+          example: c_9N9GpR
+        name:
+          type: string
+        creator:
+          $ref: '#/components/schemas/User'
+        stats:
+          type: object
+          properties:
+            prospects_contacted:
+              type: integer
+            prospects_reached:
+              type: integer
+            prospects_opened:
+              type: integer
+            prospects_replied:
+              type: integer
+            prospects_bounced:
+              type: integer
+            prospects_optedout:
+              type: integer
+    Lead:
+      type: object
+      properties:
+        id:
+          type: string
+          example: l_abc001
+        status:
+          type: string
+          example: active
+        bounced:
+          type:
+          - boolean
+          - string
+        data:
+          $ref: '#/components/schemas/LeadData'
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: u_q3e537
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        activated:
+          type: boolean
+        default_mailbox_id:
+          type:
+          - string
+          - 'null'
+        salesforce_id:
+          type:
+          - string
+          - 'null'
+    Error:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        error:
+          type: object
+          properties:
+            reason:
+              type: string
+              description: Error type. Values include invalid_request_error, api_error, bad_params, invalid_request, too_many_requests.
+            message:
+              type: string
+    LeadData:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+          format: email
+        first_name:
+          type:
+          - string
+          - 'null'
+        last_name:
+          type:
+          - string
+          - 'null'
+        company_name:
+          type:
+          - string
+          - 'null'
+        address:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        phone:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        industry:
+          type:
+          - string
+          - 'null'
+        snippet:
+          type:
+          - string
+          - 'null'
+        snippet2:
+          type:
+          - string
+          - 'null'
+        snippet3:
+          type:
+          - string
+          - 'null'
+        snippet4:
+          type:
+          - string
+          - 'null'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: Company-wide API key. Grants access to read and write all users' data within the company. Include it in the header of every request.

@@ -1,0 +1,206 @@
+openapi: 3.1.0
+info:
+  title: PersistIQ Campaigns Events API
+  version: v1
+  description: The PersistIQ API is a REST API for the PersistIQ sales engagement platform. It exposes users, leads (prospects), lead statuses and fields, campaigns (including adding and removing leads), activity events, and Do Not Contact (DNC) domains. Authentication is a company-wide API key sent in the `x-api-key` request header. Responses are JSON with a `status`/`errors` envelope, cursor pagination via `has_more` + `next_page`, and a per-key rate limit of 100 requests per minute surfaced through `X-RateLimit-*` headers. This specification was derived faithfully from PersistIQ's published API reference (apidocs.persistiq.com) and captures the documented request and response surface; it is not an official PersistIQ-published OpenAPI file.
+  contact:
+    name: PersistIQ
+    url: https://persistiq.com
+  x-apisjson-generated: '2026-07-20'
+  x-apisjson-method: derived
+  x-apisjson-source: https://apidocs.persistiq.com/
+servers:
+- url: https://api.persistiq.com
+  description: Production
+security:
+- ApiKeyAuth: []
+tags:
+- name: Events
+  description: Activity events
+paths:
+  /v1/events:
+    get:
+      operationId: listEvents
+      summary: List events
+      description: Retrieves activity events. Each response contains a maximum of 500 events; when more exist, `has_more` is true and `next_page` holds the next URL.
+      tags:
+      - Events
+      parameters:
+      - name: group
+        in: query
+        required: false
+        description: The group of events to return. One of `campaign`, `settings`, or `lead_detail`.
+        schema:
+          type: string
+          enum:
+          - campaign
+          - settings
+          - lead_detail
+      - name: campaign
+        in: query
+        required: false
+        description: Filters events about a specific campaign.
+        schema:
+          type: string
+      - name: lead
+        in: query
+        required: false
+        description: Filters events about a certain lead.
+        schema:
+          type: string
+      - name: user
+        in: query
+        required: false
+        description: Filters events performed by a certain user.
+        schema:
+          type: string
+      - name: start_at
+        in: query
+        required: false
+        description: Gets events after the specified time.
+        schema:
+          type: string
+          format: date-time
+      - name: end_at
+        in: query
+        required: false
+        description: Gets events before the specified time.
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: A page of events
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errors:
+                    type: array
+                    items: {}
+                  has_more:
+                    type: boolean
+                  next_page:
+                    type:
+                    - string
+                    - 'null'
+                  events:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Event'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    TooManyRequests:
+      description: Too Many Requests - more than 100 requests were sent in one minute.
+      headers:
+        X-RateLimit-Limit:
+          description: Maximum allowed requests per minute.
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          description: Requests left for the current window.
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          description: UTC epoch seconds when the window resets.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - your API key is wrong
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: u_q3e537
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        activated:
+          type: boolean
+        default_mailbox_id:
+          type:
+          - string
+          - 'null'
+        salesforce_id:
+          type:
+          - string
+          - 'null'
+    Error:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        error:
+          type: object
+          properties:
+            reason:
+              type: string
+              description: Error type. Values include invalid_request_error, api_error, bad_params, invalid_request, too_many_requests.
+            message:
+              type: string
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+          example: evt_g3gZjN
+        kind:
+          type: string
+          example: lead_created
+        event_at:
+          type: string
+          format: date-time
+        user_id:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+        campaign:
+          type:
+          - object
+          - 'null'
+        lead:
+          type:
+          - object
+          - 'null'
+        params:
+          type:
+          - object
+          - 'null'
+        diff:
+          type:
+          - object
+          - 'null'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: Company-wide API key. Grants access to read and write all users' data within the company. Include it in the header of every request.

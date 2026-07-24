@@ -1,0 +1,126 @@
+openapi: 3.1.0
+info:
+  title: PersistIQ Campaigns Users API
+  version: v1
+  description: The PersistIQ API is a REST API for the PersistIQ sales engagement platform. It exposes users, leads (prospects), lead statuses and fields, campaigns (including adding and removing leads), activity events, and Do Not Contact (DNC) domains. Authentication is a company-wide API key sent in the `x-api-key` request header. Responses are JSON with a `status`/`errors` envelope, cursor pagination via `has_more` + `next_page`, and a per-key rate limit of 100 requests per minute surfaced through `X-RateLimit-*` headers. This specification was derived faithfully from PersistIQ's published API reference (apidocs.persistiq.com) and captures the documented request and response surface; it is not an official PersistIQ-published OpenAPI file.
+  contact:
+    name: PersistIQ
+    url: https://persistiq.com
+  x-apisjson-generated: '2026-07-20'
+  x-apisjson-method: derived
+  x-apisjson-source: https://apidocs.persistiq.com/
+servers:
+- url: https://api.persistiq.com
+  description: Production
+security:
+- ApiKeyAuth: []
+tags:
+- name: Users
+  description: Company users
+paths:
+  /v1/users:
+    get:
+      operationId: listUsers
+      summary: List all users
+      description: Retrieves all non-archived users in your company.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  errors:
+                    type: array
+                    items: {}
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    TooManyRequests:
+      description: Too Many Requests - more than 100 requests were sent in one minute.
+      headers:
+        X-RateLimit-Limit:
+          description: Maximum allowed requests per minute.
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          description: Requests left for the current window.
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          description: UTC epoch seconds when the window resets.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - your API key is wrong
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: u_q3e537
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        activated:
+          type: boolean
+        default_mailbox_id:
+          type:
+          - string
+          - 'null'
+        salesforce_id:
+          type:
+          - string
+          - 'null'
+    Error:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        error:
+          type: object
+          properties:
+            reason:
+              type: string
+              description: Error type. Values include invalid_request_error, api_error, bad_params, invalid_request, too_many_requests.
+            message:
+              type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: Company-wide API key. Grants access to read and write all users' data within the company. Include it in the header of every request.

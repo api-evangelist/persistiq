@@ -1,0 +1,370 @@
+openapi: 3.1.0
+info:
+  title: PersistIQ Campaigns Leads API
+  version: v1
+  description: The PersistIQ API is a REST API for the PersistIQ sales engagement platform. It exposes users, leads (prospects), lead statuses and fields, campaigns (including adding and removing leads), activity events, and Do Not Contact (DNC) domains. Authentication is a company-wide API key sent in the `x-api-key` request header. Responses are JSON with a `status`/`errors` envelope, cursor pagination via `has_more` + `next_page`, and a per-key rate limit of 100 requests per minute surfaced through `X-RateLimit-*` headers. This specification was derived faithfully from PersistIQ's published API reference (apidocs.persistiq.com) and captures the documented request and response surface; it is not an official PersistIQ-published OpenAPI file.
+  contact:
+    name: PersistIQ
+    url: https://persistiq.com
+  x-apisjson-generated: '2026-07-20'
+  x-apisjson-method: derived
+  x-apisjson-source: https://apidocs.persistiq.com/
+servers:
+- url: https://api.persistiq.com
+  description: Production
+security:
+- ApiKeyAuth: []
+tags:
+- name: Leads
+  description: Leads (prospects)
+paths:
+  /v1/leads:
+    get:
+      operationId: listLeads
+      summary: List leads
+      description: Retrieves leads for your company. Each response contains a maximum of 100 leads; when more exist, `has_more` is true and `next_page` holds the URL for the next page.
+      tags:
+      - Leads
+      parameters:
+      - name: status
+        in: query
+        required: false
+        description: Filters leads by status name.
+        schema:
+          type: string
+          example: active
+      - name: updated_after
+        in: query
+        required: false
+        description: Gets leads updated after the specified time.
+        schema:
+          type: string
+          format: date-time
+          example: '2017-10-17T07:37:00-07:00'
+      responses:
+        '200':
+          description: A page of leads
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  errors:
+                    type: array
+                    items: {}
+                  has_more:
+                    type: boolean
+                  next_page:
+                    type:
+                    - string
+                    - 'null'
+                  leads:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Lead'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    post:
+      operationId: createLeads
+      summary: Create leads
+      description: Creates leads, up to 10 at a time. If a lead with the same email already exists, use `dup` = `update` or `skip` to control duplicate handling.
+      tags:
+      - Leads
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - leads
+              properties:
+                dup:
+                  type: string
+                  enum:
+                  - skip
+                  - update
+                  default: skip
+                  description: Duplicate handling strategy.
+                creator_id:
+                  type: string
+                  description: ID of the user creating the leads.
+                leads:
+                  type: array
+                  maxItems: 10
+                  items:
+                    $ref: '#/components/schemas/LeadData'
+      responses:
+        '200':
+          description: Created leads (with per-lead errors, if any)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errors:
+                    type: array
+                    items: {}
+                  leads:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Lead'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /v1/leads/{lead_id}:
+    get:
+      operationId: getLead
+      summary: View a single lead
+      tags:
+      - Leads
+      parameters:
+      - name: lead_id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: l_1abc
+      responses:
+        '200':
+          description: A single lead
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errors:
+                    type:
+                    - array
+                    - 'null'
+                    items: {}
+                  leads:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Lead'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/ServerError'
+    put:
+      operationId: updateLead
+      summary: Update a lead
+      description: Updates a single lead. If `status` or `status_id` are specified, the lead's status changes. The `data` hash sets custom and built-in lead attributes.
+      tags:
+      - Leads
+      parameters:
+      - name: lead_id
+        in: path
+        required: true
+        schema:
+          type: string
+          example: l_1abc
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  description: Name of lead status.
+                status_id:
+                  type: string
+                  description: ID of lead status.
+                bounced:
+                  type: boolean
+                  description: Sets the lead as bounced.
+                optedout:
+                  type: boolean
+                  description: Sets the lead as opted out.
+                data:
+                  type: object
+                  description: Hash of lead data attributes.
+      responses:
+        '200':
+          description: The updated lead
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  error:
+                    type:
+                    - object
+                    - 'null'
+                  lead:
+                    $ref: '#/components/schemas/Lead'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    TooManyRequests:
+      description: Too Many Requests - more than 100 requests were sent in one minute.
+      headers:
+        X-RateLimit-Limit:
+          description: Maximum allowed requests per minute.
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          description: Requests left for the current window.
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          description: UTC epoch seconds when the window resets.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - your API key is wrong
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad Request - missing a required parameter
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Not Found - the specified data could not be found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Lead:
+      type: object
+      properties:
+        id:
+          type: string
+          example: l_abc001
+        status:
+          type: string
+          example: active
+        bounced:
+          type:
+          - boolean
+          - string
+        data:
+          $ref: '#/components/schemas/LeadData'
+    Error:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        error:
+          type: object
+          properties:
+            reason:
+              type: string
+              description: Error type. Values include invalid_request_error, api_error, bad_params, invalid_request, too_many_requests.
+            message:
+              type: string
+    LeadData:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+          format: email
+        first_name:
+          type:
+          - string
+          - 'null'
+        last_name:
+          type:
+          - string
+          - 'null'
+        company_name:
+          type:
+          - string
+          - 'null'
+        address:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        phone:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        industry:
+          type:
+          - string
+          - 'null'
+        snippet:
+          type:
+          - string
+          - 'null'
+        snippet2:
+          type:
+          - string
+          - 'null'
+        snippet3:
+          type:
+          - string
+          - 'null'
+        snippet4:
+          type:
+          - string
+          - 'null'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: Company-wide API key. Grants access to read and write all users' data within the company. Include it in the header of every request.
