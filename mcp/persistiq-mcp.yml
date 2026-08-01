@@ -1,0 +1,52 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/persistiq-openapi.yml
+server:
+  name: persistiq
+  transport: stdio
+  url: null
+notes: >-
+  No official hosted or remote PersistIQ MCP server was found. The tool list
+  below is a candidate derived one-to-one from the documented OpenAPI
+  operations; it is a design starting point, not a published server.
+tools:
+  - name: list_users
+    description: List all non-archived users in your company.
+    source_operation: openapi/persistiq-openapi.yml#listUsers
+  - name: list_leads
+    description: List leads, optionally filtered by status or updated time.
+    source_operation: openapi/persistiq-openapi.yml#listLeads
+  - name: get_lead
+    description: View a single lead by id.
+    source_operation: openapi/persistiq-openapi.yml#getLead
+  - name: create_leads
+    description: Create up to 10 leads, with duplicate handling.
+    source_operation: openapi/persistiq-openapi.yml#createLeads
+  - name: update_lead
+    description: Update a single lead's status or data attributes.
+    source_operation: openapi/persistiq-openapi.yml#updateLead
+  - name: list_lead_statuses
+    description: List all lead statuses for your company.
+    source_operation: openapi/persistiq-openapi.yml#listLeadStatuses
+  - name: list_lead_fields
+    description: List all lead fields for your company.
+    source_operation: openapi/persistiq-openapi.yml#listLeadFields
+  - name: list_campaigns
+    description: List campaigns, optionally filtered by lead, owner, or name.
+    source_operation: openapi/persistiq-openapi.yml#listCampaigns
+  - name: add_leads_to_campaign
+    description: Add up to 100 leads to a campaign.
+    source_operation: openapi/persistiq-openapi.yml#addLeadsToCampaign
+  - name: remove_lead_from_campaign
+    description: Remove a lead from a campaign.
+    source_operation: openapi/persistiq-openapi.yml#removeLeadFromCampaign
+  - name: list_events
+    description: List activity events, filtered by group, campaign, lead, user, or time.
+    source_operation: openapi/persistiq-openapi.yml#listEvents
+  - name: list_dnc_domains
+    description: List all Do Not Contact domains.
+    source_operation: openapi/persistiq-openapi.yml#listDncDomains
+  - name: create_dnc_domain
+    description: Create a Do Not Contact domain.
+    source_operation: openapi/persistiq-openapi.yml#createDncDomain

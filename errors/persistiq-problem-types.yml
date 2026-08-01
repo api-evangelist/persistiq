@@ -1,0 +1,51 @@
+generated: '2026-07-20'
+method: searched
+source: https://apidocs.persistiq.com/
+format: custom
+envelope: >-
+  { "status": "error", "error": { "reason": "...", "message": "..." } }
+notes: >-
+  PersistIQ returns a custom JSON error envelope (not RFC 9457
+  application/problem+json). Single-object errors use `error`; batch operations
+  (create leads, add leads to campaign) return an `errors` array with per-item
+  `reason`, `message`, and the offending object. `reason` describes the error
+  type; `message` is a human-readable, user-friendly description.
+reasons:
+  - reason: invalid_request_error
+    description: The request was invalid.
+  - reason: api_error
+    description: A generic API error.
+  - reason: bad_params
+    description: A required parameter is missing or invalid.
+  - reason: invalid_request
+    description: The request could not be processed (e.g. validation failure).
+  - reason: too_many_requests
+    description: Rate limit exceeded (see 429).
+problems:
+  - status: 400
+    title: Bad Request
+    detail: Missing a required parameter.
+    source_operations:
+      - openapi/persistiq-openapi.yml#createLeads
+      - openapi/persistiq-openapi.yml#updateLead
+      - openapi/persistiq-openapi.yml#addLeadsToCampaign
+      - openapi/persistiq-openapi.yml#createDncDomain
+  - status: 401
+    title: Unauthorized
+    detail: The API key is wrong or missing.
+    source_operations:
+      - openapi/persistiq-openapi.yml#listUsers
+  - status: 404
+    title: Not Found
+    detail: The specified data could not be found.
+    source_operations:
+      - openapi/persistiq-openapi.yml#getLead
+      - openapi/persistiq-openapi.yml#removeLeadFromCampaign
+  - status: 429
+    title: Too Many Requests
+    detail: More than 100 requests were sent in a one-minute window.
+    source_operations:
+      - openapi/persistiq-openapi.yml#listLeads
+  - status: 500
+    title: Internal Server Error
+    detail: A server-side problem occurred. Try again later.

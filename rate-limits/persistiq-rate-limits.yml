@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: searched
+source: https://apidocs.persistiq.com/
+scope: per-api-key
+limits:
+  - name: default
+    limit_count: 100
+    window: 1 minute
+    applies_to: all endpoints
+    response_status: 429
+headers:
+  - name: X-RateLimit-Limit
+    description: Maximum allowed requests per minute.
+  - name: X-RateLimit-Remaining
+    description: Number of requests left for the current window.
+  - name: X-RateLimit-Reset
+    description: UTC epoch seconds at which the current window ends and the limit resets.
+over_limit:
+  status: 429
+  reason: too_many_requests
+  body: >-
+    { "error": { "reason": "too_many_requests", "message": "You performed more
+    than 100 requests per minute. Limit will be reseted at <epoch>." } }
+notes: >-
+  A maximum of 100 requests is allowed in any 1-minute window, enforced per API
+  key (i.e. per user). Exceeding the limit returns 429 Too Many Requests.

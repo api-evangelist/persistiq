@@ -1,0 +1,28 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for PersistIQ API
+  version: 1.0.0
+extends: openapi/persistiq-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enrichment: '2026-07-20'
+      x-apievangelist-source: https://apidocs.persistiq.com/
+      x-api-category:
+        - sales-engagement
+        - outbound
+        - crm
+  - target: $.info
+    update:
+      x-rate-limit:
+        limit: 100
+        window: 1 minute
+        scope: per-api-key
+  - target: $.components.securitySchemes.ApiKeyAuth
+    update:
+      x-agentic-access:
+        action-class: acting
+        audit: required
+        notes: >-
+          Company-wide key grants read/write across all users' data; treat as a
+          high-consequence credential.

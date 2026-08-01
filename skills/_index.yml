@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/persistiq-openapi.yml
+skills:
+  - file: persistiq-import-and-enroll-leads.md
+    name: Import leads and enroll them in a campaign
+    api: openapi/persistiq-openapi.yml
+    operations: [listUsers, createLeads, listCampaigns, addLeadsToCampaign]
+  - file: persistiq-sync-lead-activity.md
+    name: Sync lead activity and update statuses
+    api: openapi/persistiq-openapi.yml
+    operations: [listEvents, listLeads, getLead, updateLead, listLeadStatuses]
+  - file: persistiq-manage-suppression.md
+    name: Manage Do Not Contact suppression
+    api: openapi/persistiq-openapi.yml
+    operations: [listDncDomains, createDncDomain]

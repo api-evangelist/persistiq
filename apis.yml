@@ -1,25 +1,192 @@
 aid: persistiq
-name: persistiq
-description: persistiq is a company surfaced as a portfolio company of point-nine and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+name: PersistIQ
+description: >-
+  PersistIQ is a sales engagement platform for small teams to find new
+  customers, start conversations, and personalize sales outreach at scale from
+  one place. It combines prospect research (Chrome extension), multi-channel
+  outreach (email, calls, tasks), campaign management with A/B testing,
+  performance analytics, and CRM integrations. PersistIQ exposes a REST API (v1)
+  for users, leads (prospects), lead statuses and fields, campaigns, activity
+  events, and Do Not Contact domains, authenticated with a company-wide API key
+  sent in the x-api-key header, with cursor pagination and a 100 request/minute
+  per-key rate limit.
 url: https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://persistiq.com/favicon.ico
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - point-nine
-x-tier: stub
+x-tier: enriched
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Sales Engagement
+- Sales
+- Outbound
+- Email Outreach
+- CRM
+- Lead Management
+- Marketing
+apis:
+- aid: persistiq:persistiq-campaigns-api
+  name: PersistIQ Campaigns API
+  description: Outreach campaigns
+  humanURL: https://apidocs.persistiq.com/
+  baseURL: https://api.persistiq.com
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/persistiq-campaigns-api-openapi.yml
+  - type: APIReference
+    url: https://apidocs.persistiq.com/
+- aid: persistiq:persistiq-do-not-contact-domains-api
+  name: PersistIQ Do Not Contact Domains API
+  description: Suppressed domains
+  humanURL: https://apidocs.persistiq.com/
+  baseURL: https://api.persistiq.com
+  tags:
+  - Do Not Contact Domains
+  properties:
+  - type: OpenAPI
+    url: openapi/persistiq-do-not-contact-domains-api-openapi.yml
+  - type: APIReference
+    url: https://apidocs.persistiq.com/
+- aid: persistiq:persistiq-events-api
+  name: PersistIQ Events API
+  description: Activity events
+  humanURL: https://apidocs.persistiq.com/
+  baseURL: https://api.persistiq.com
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/persistiq-events-api-openapi.yml
+  - type: APIReference
+    url: https://apidocs.persistiq.com/
+- aid: persistiq:persistiq-lead-fields-api
+  name: PersistIQ Lead Fields API
+  description: Lead field definitions
+  humanURL: https://apidocs.persistiq.com/
+  baseURL: https://api.persistiq.com
+  tags:
+  - Lead Fields
+  properties:
+  - type: OpenAPI
+    url: openapi/persistiq-lead-fields-api-openapi.yml
+  - type: APIReference
+    url: https://apidocs.persistiq.com/
+- aid: persistiq:persistiq-lead-statuses-api
+  name: PersistIQ Lead Statuses API
+  description: Lead status definitions
+  humanURL: https://apidocs.persistiq.com/
+  baseURL: https://api.persistiq.com
+  tags:
+  - Lead Statuses
+  properties:
+  - type: OpenAPI
+    url: openapi/persistiq-lead-statuses-api-openapi.yml
+  - type: APIReference
+    url: https://apidocs.persistiq.com/
+- aid: persistiq:persistiq-leads-api
+  name: PersistIQ Leads API
+  description: Leads (prospects)
+  humanURL: https://apidocs.persistiq.com/
+  baseURL: https://api.persistiq.com
+  tags:
+  - Leads
+  properties:
+  - type: OpenAPI
+    url: openapi/persistiq-leads-api-openapi.yml
+  - type: APIReference
+    url: https://apidocs.persistiq.com/
+- aid: persistiq:persistiq-users-api
+  name: PersistIQ Users API
+  description: Company users
+  humanURL: https://apidocs.persistiq.com/
+  baseURL: https://api.persistiq.com
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/persistiq-users-api-openapi.yml
+  - type: APIReference
+    url: https://apidocs.persistiq.com/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/persistiq-agentic-access.yml
+- type: WellKnown
+  url: well-known/persistiq-well-known.yml
+- type: GitHubOrganization
+  url: https://github.com/PersistIQ
+- type: DomainSecurity
+  url: security/persistiq-domain-security.yml
+- type: Authentication
+  url: authentication/persistiq-authentication.yml
+- type: Conventions
+  url: conventions/persistiq-conventions.yml
+- type: ErrorCatalog
+  url: errors/persistiq-problem-types.yml
+- type: RateLimits
+  url: rate-limits/persistiq-rate-limits.yml
+- type: Lifecycle
+  url: lifecycle/persistiq-lifecycle.yml
+- type: Conformance
+  url: conformance/persistiq-conformance.yml
+- type: DataModel
+  url: data-model/persistiq-data-model.yml
+- type: MCPServer
+  url: mcp/persistiq-mcp.yml
+- type: Packages
+  url: packages/persistiq-packages.yml
+- type: LLMsTxt
+  url: llms/persistiq-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DeveloperPortal
+  url: https://apidocs.persistiq.com/
+- type: Documentation
+  url: https://apidocs.persistiq.com/
+- type: APIReference
+  url: https://apidocs.persistiq.com/
+- type: Integrations
+  url: https://www.persistiq.com/integrations/
+- type: Blog
+  url: https://blog.persistiq.com/
+- type: Pricing
+  url: https://www.persistiq.com/pricing/
+- type: SignUp
+  url: https://persistiq.com/users/sign_up
+- type: Login
+  url: https://persistiq.com/users/sign_in
+- type: TermsOfService
+  url: https://www.persistiq.com/terms-of-service/
+- type: PrivacyPolicy
+  url: https://www.persistiq.com/privacy/
 - type: Website
   url: https://persistiq.com
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 19
+  pass: local-v1

@@ -1,0 +1,72 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/persistiq-openapi.yml
+entities:
+  - name: User
+    id_prefix: u_
+    fields: [id, name, email, activated, default_mailbox_id, salesforce_id]
+  - name: Lead
+    id_prefix: l_
+    fields: [id, status, bounced, data]
+  - name: LeadStatus
+    id_prefix: lss_
+    fields: [id, name]
+  - name: LeadField
+    id_prefix: lcf_
+    fields: [id, name, label]
+  - name: Campaign
+    id_prefix: c_
+    fields: [id, name, creator, stats]
+  - name: CampaignLead
+    id_prefix: cl_
+    fields: [id, campaign_id, mailbox_id, lead]
+  - name: Event
+    id_prefix: evt_
+    fields: [id, kind, event_at, user_id, user, campaign, lead, params, diff]
+  - name: DncDomain
+    id_prefix: dom_
+    fields: [id, name]
+  - name: Mailbox
+    id_prefix: mbox_
+    fields: [id]
+    notes: Referenced by default_mailbox_id and campaign mailbox_id; not directly listable in the documented API.
+relationships:
+  - from: Campaign
+    to: User
+    type: belongs_to
+    via: creator
+  - from: CampaignLead
+    to: Campaign
+    type: belongs_to
+    via: campaign_id
+  - from: CampaignLead
+    to: Lead
+    type: belongs_to
+    via: lead
+  - from: CampaignLead
+    to: Mailbox
+    type: belongs_to
+    via: mailbox_id
+  - from: User
+    to: Mailbox
+    type: has_one
+    via: default_mailbox_id
+  - from: Event
+    to: User
+    type: belongs_to
+    via: user_id
+  - from: Event
+    to: Campaign
+    type: belongs_to
+    via: campaign
+  - from: Event
+    to: Lead
+    type: belongs_to
+    via: lead
+  - from: Lead
+    to: LeadStatus
+    type: belongs_to
+    via: status_id
+notes: >-
+  Entity graph derived from the documented PersistIQ objects and their id-
+  reference fields. Ids are type-prefixed (see conventions).

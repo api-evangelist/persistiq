@@ -1,0 +1,44 @@
+generated: '2026-07-20'
+method: searched
+source: >-
+  npm, PyPI, RubyGems registry search; PersistIQ publishes no first-party SDKs
+  in its documentation.
+packages:
+  - language: javascript
+    registry: npm
+    name: persistiq
+    url: https://www.npmjs.com/package/persistiq
+    install: npm install persistiq
+    version: 1.0.6
+    official: false
+    author: Luis Correia
+    repository: https://github.com/lfceng/persistiq
+    notes: Community API wrapper; not published by PersistIQ.
+  - language: python
+    registry: pypi
+    name: persistiq
+    url: https://pypi.org/project/persistiq/
+    install: pip install persistiq
+    version: 0.0.2
+    official: false
+    author: Elijah Wilson
+    repository: https://github.com/tizz98/persistiq
+    notes: Community Python wrapper; not published by PersistIQ.
+  - language: ruby
+    registry: rubygems
+    name: persistiq
+    url: https://rubygems.org/gems/persistiq
+    install: gem install persistiq
+    version: 1.0.0
+    official: false
+    author: Jamie Quint
+    repository: https://github.com/jamiequint/persistiq
+    notes: >-
+      Community Ruby gem on a personal GitHub account (author is a PersistIQ
+      co-founder, but the gem is not published under a company org or referenced
+      in the official docs), so it is not marked first-party.
+notes: >-
+  Only third-party/community client libraries were found. PersistIQ's own
+  documentation does not advertise an official SDK, so no `SDKs` pointer (which
+  the sdk_count check reads and which requires a first-party library) is emitted.
+  Zapier is offered as the official no-code integration path.

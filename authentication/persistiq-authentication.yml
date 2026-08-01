@@ -1,0 +1,17 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/persistiq-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  description: Company-wide API key. Grants access to read and write all users' data within
+    the company. Include it in the header of every request.
+  sources:
+  - openapi/persistiq-openapi.yml

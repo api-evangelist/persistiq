@@ -1,0 +1,26 @@
+{
+  "provider": "persistiq",
+  "sources": [
+    "persistiq-campaigns-api-openapi.yml",
+    "persistiq-do-not-contact-domains-api-openapi.yml",
+    "persistiq-events-api-openapi.yml",
+    "persistiq-lead-fields-api-openapi.yml",
+    "persistiq-lead-statuses-api-openapi.yml",
+    "persistiq-leads-api-openapi.yml",
+    "persistiq-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "persistiq-campaigns-api-openapi.yml",
+    "persistiq-do-not-contact-domains-api-openapi.yml",
+    "persistiq-events-api-openapi.yml",
+    "persistiq-lead-fields-api-openapi.yml",
+    "persistiq-lead-statuses-api-openapi.yml",
+    "persistiq-leads-api-openapi.yml",
+    "persistiq-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

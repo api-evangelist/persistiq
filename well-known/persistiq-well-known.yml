@@ -1,0 +1,43 @@
+generated: '2026-07-20'
+method: searched
+source: live probe of /.well-known/* on the API and website hosts
+hosts:
+  - https://api.persistiq.com
+  - https://persistiq.com
+documents:
+  - host: https://api.persistiq.com
+    path: /.well-known/security.txt
+    status: 404
+  - host: https://persistiq.com
+    path: /.well-known/security.txt
+    status: 404
+  - host: https://api.persistiq.com
+    path: /.well-known/openid-configuration
+    status: 404
+  - host: https://persistiq.com
+    path: /.well-known/openid-configuration
+    status: 404
+  - host: https://api.persistiq.com
+    path: /.well-known/oauth-authorization-server
+    status: 404
+  - host: https://persistiq.com
+    path: /.well-known/oauth-authorization-server
+    status: 404
+  - host: https://api.persistiq.com
+    path: /.well-known/api-catalog
+    status: 404
+  - host: https://persistiq.com
+    path: /.well-known/api-catalog
+    status: 404
+  - host: https://api.persistiq.com
+    path: /.well-known/ai-plugin.json
+    status: 404
+  - host: https://persistiq.com
+    path: /.well-known/ai-plugin.json
+    status: 404
+notes: >-
+  No /.well-known/ discovery documents are published on either the API host
+  (api.persistiq.com) or the website host (persistiq.com). PersistIQ uses
+  company-wide API-key auth (x-api-key), so no OIDC/OAuth discovery is expected;
+  no security.txt, api-catalog, or ai-plugin.json is served. Absence recorded as
+  a valid negative result.

@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/persistiq-openapi.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://apidocs.persistiq.com/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No deprecation policy or RFC 8594 Sunset/Deprecation header support is documented.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+deprecated_operations: []
+notes: >-
+  PersistIQ publishes a single stable v1 API. No status page, SLA, deprecation
+  policy, or dated changelog was found on the public developer surface at the
+  time of this pass.

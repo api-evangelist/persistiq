@@ -1,0 +1,72 @@
+generated: '2026-07-20'
+method: searched
+source: https://apidocs.persistiq.com/
+summary: >-
+  Cross-cutting request/response conventions for the PersistIQ API v1, captured
+  from the published API reference and the derived OpenAPI.
+authentication:
+  style: api-key
+  header: x-api-key
+  scope: company-wide
+  notes: >-
+    A single company-wide API key grants read/write access to all users' data
+    within the company. See authentication/persistiq-authentication.yml.
+idempotency:
+  supported: false
+  notes: >-
+    PersistIQ does not document an idempotency-key mechanism. Duplicate lead
+    creation is instead controlled per-request via the `dup` argument
+    (skip | update) on POST /v1/leads.
+pagination:
+  style: cursor
+  page_size:
+    leads: 100
+    campaigns: 100
+    dnc_domains: 100
+    events: 500
+  response_fields:
+    - has_more
+    - next_page
+  notes: >-
+    List responses include `has_more` (boolean) and `next_page` (an absolute URL
+    to the next page). Follow `next_page` until `has_more` is false.
+rate_limiting:
+  limit: 100
+  window: 1 minute
+  scope: per-api-key
+  response_status: 429
+  headers:
+    - X-RateLimit-Limit
+    - X-RateLimit-Remaining
+    - X-RateLimit-Reset
+  notes: See rate-limits/persistiq-rate-limits.yml.
+error_envelope:
+  shape: >-
+    { "status": "error", "error": { "reason": "...", "message": "..." } }
+  batch_shape: >-
+    { "status": "error", "errors": [ { "reason": "...", "message": "..." } ] }
+  reasons:
+    - invalid_request_error
+    - api_error
+    - bad_params
+    - invalid_request
+    - too_many_requests
+  notes: See errors/persistiq-problem-types.yml.
+versioning:
+  style: uri-path
+  current: v1
+  notes: The version is embedded in the request path (/v1/...).
+identifiers:
+  style: prefixed
+  notes: >-
+    Object ids carry a type prefix, e.g. u_ (user), l_ (lead), c_ (campaign),
+    cl_ (campaign lead), lss_ (lead status), lcf_ (lead field), evt_ (event),
+    dom_ (DNC domain), mbox_ (mailbox).
+request_tracing:
+  request_id_header: null
+  notes: No request-id / correlation header is documented.
+cross_references:
+  errors: errors/persistiq-problem-types.yml
+  authentication: authentication/persistiq-authentication.yml
+  rate_limits: rate-limits/persistiq-rate-limits.yml
+  lifecycle: lifecycle/persistiq-lifecycle.yml

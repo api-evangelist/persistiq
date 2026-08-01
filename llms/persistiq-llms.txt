@@ -1,0 +1,35 @@
+# PersistIQ
+
+> PersistIQ is a sales engagement platform for small teams to find new customers, start conversations, and personalize sales outreach at scale. Its REST API (v1) exposes users, leads (prospects), lead statuses and fields, campaigns, activity events, and Do Not Contact domains. Authentication is a company-wide API key sent in the `x-api-key` header.
+
+## API
+- [PersistIQ API v1 (OpenAPI)](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/openapi/persistiq-openapi.yml): Derived OpenAPI 3.1 for the documented REST surface. Base URL https://api.persistiq.com
+- [API Reference](https://apidocs.persistiq.com/): PersistIQ's published API documentation.
+
+## Authentication
+- Header: `x-api-key: YOUR_API_KEY` (company-wide key, read/write access to all users' data).
+- [Authentication profile](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/authentication/persistiq-authentication.yml)
+
+## Conventions
+- Pagination: cursor via `has_more` + `next_page` URL (100 items for leads/campaigns/DNC domains, 500 for events).
+- Rate limit: 100 requests/minute per API key; `X-RateLimit-Limit`/`Remaining`/`Reset` headers; 429 on exceed.
+- Errors: custom JSON envelope `{ "status": "error", "error": { "reason", "message" } }`.
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/conventions/persistiq-conventions.yml)
+- [Error catalog](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/errors/persistiq-problem-types.yml)
+- [Rate limits](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/rate-limits/persistiq-rate-limits.yml)
+
+## Resources
+- Users: `GET /v1/users`
+- Leads: `GET /v1/leads`, `GET /v1/leads/{id}`, `POST /v1/leads`, `PUT /v1/leads/{id}`
+- Lead statuses: `GET /v1/lead_statuses`
+- Lead fields: `GET /v1/lead_fields`
+- Campaigns: `GET /v1/campaigns`, `POST /v1/campaigns/{id}/leads`, `DELETE /v1/campaigns/{id}/leads/{lead_id}`
+- Events: `GET /v1/events`
+- Do Not Contact domains: `GET /v1/dnc_domains`, `POST /v1/dnc_domains`
+
+## Docs
+- [Documentation](https://apidocs.persistiq.com/)
+- [Integrations](https://www.persistiq.com/integrations/)
+- [Pricing](https://www.persistiq.com/pricing/)
+- [Blog](https://blog.persistiq.com/)
+- [Sign up](https://persistiq.com/users/sign_up)
