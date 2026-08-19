@@ -1,0 +1,45 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.persistiq.com/pricing/
+plan_count: 0
+plans: []
+notes: >-
+  PersistIQ no longer publishes plan names or prices on its own site. The primary
+  navigation item labelled "Pricing" links to https://www.persistiq.com/book-demo/
+  (a demo request form), and the footer "Pricing" link at
+  https://www.persistiq.com/pricing/ resolves to a page carrying only a
+  "Get a personalized demo of PersistIQ tailored to your business from one of our
+  experts" call to action — no plan table, no dollar amounts, no quotas. The
+  previously public monthly plan page at https://www.persistiq.com/pricing-monthly/
+  now returns HTTP 410 Gone, which is the provider explicitly retiring the
+  resource rather than a transient error.
+
+  Third-party directories still list historical figures (Essentials ~$59/user/mo
+  annual, Premium ~$99/user/mo annual, with 300 vs 600 emails/day). Those are NOT
+  recorded as plans here: they are not provider-published, they are not dated by
+  the provider, and this pipeline only records pricing the provider states itself.
+  The honest measurement today is zero published plans — pricing is sales-gated.
+pricing_model: sales-gated
+sales_gate:
+  url: https://www.persistiq.com/book-demo/
+  form: demo request
+trial:
+  offered: true
+  source: https://persistiq.com/users/sign_up
+  notes: >-
+    Self-serve signup remains open at https://persistiq.com/users/sign_up, so an
+    account can be created without talking to sales even though the price is not
+    published.
+x-evidence:
+  - url: https://www.persistiq.com/pricing/
+    status: 200
+    observed: demo call-to-action only, no plan table
+    fetched: '2026-08-13'
+  - url: https://www.persistiq.com/pricing-monthly/
+    status: 410
+    observed: Gone — the monthly pricing page has been withdrawn
+    fetched: '2026-08-13'
+  - url: https://www.persistiq.com/book-demo/
+    status: 200
+    observed: destination of the primary-nav "Pricing" link
+    fetched: '2026-08-13'

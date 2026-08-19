@@ -49,3 +49,46 @@ problems:
   - status: 500
     title: Internal Server Error
     detail: A server-side problem occurred. Try again later.
+  - status: 422
+    title: Unprocessable Entity
+    detail: >-
+      The request was well-formed but could not be acted on — campaign creation
+      or duplication failed validation, or the mailbox needed to send a reply is
+      disconnected.
+    schema: error_response
+    source_operations:
+      - 'openapi/persistiq-api-v1-openapi.json#POST /v1/campaigns'
+      - 'openapi/persistiq-api-v1-openapi.json#POST /v1/campaigns/duplicate'
+      - 'openapi/persistiq-api-v1-openapi.json#POST /v1/campaigns/{campaign_id}/replies'
+  - status: 201
+    title: Reply queued
+    detail: >-
+      Not an error, recorded because it is the only 2xx in the spec that is not
+      200 and it returns a different envelope — {"status":"queued","message":...}
+      — so a client keying off the standard envelope will mis-parse it.
+    source_operations:
+      - 'openapi/persistiq-api-v1-openapi.json#POST /v1/campaigns/{campaign_id}/replies'
+x-round-2:
+  date: '2026-08-13'
+  source: https://api.persistiq.com/api-docs/v1/swagger.json
+  method: searched
+  spec_error_schema: error_response
+  spec_error_shape: '{ "status": "error", "error": { "reason": string, "message": string } }'
+  observed_live:
+    request: GET https://api.persistiq.com/v1/users (no api key)
+    http_status: 401
+    reason: unauthorized
+    message: "Failed to find api key: .  Did you set header 'x-api-key' ..."
+    fetched: '2026-08-13'
+  added_reasons:
+    - reason: unauthorized
+      description: >-
+        No API key was supplied, or the supplied key does not resolve to a
+        company. Confirmed live, not documented in the reference prose.
+  notes: >-
+    PersistIQ's official OpenAPI confirms the custom envelope (schema
+    `error_response`) and adds 422 to the documented status set. It still does
+    not use RFC 9457 application/problem+json, publishes no error-code registry,
+    and declares error responses on only 6 of its 21 operations — the other 15
+    document a 200 and nothing else, so a client cannot learn the failure modes
+    of most of the API from the spec.

@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PersistIQ Campaigns Do Not Contact Domains API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Do Not Contact Domains",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all Do Not Contact domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.persistiq.com/v1/dnc_domains"
+          },
+          "docs": "Do Not Contact domains prevent email being sent to email addresses at their domain. Each response contains a maximum of 100 domains."
+        },
+        {
+          "info": {
+            "name": "Create a Do Not Contact domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.persistiq.com/v1/dnc_domains",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a Do Not Contact domain, preventing emails from being sent (without manual approval) to email addresses at this domain."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

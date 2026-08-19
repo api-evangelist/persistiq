@@ -14,3 +14,24 @@ skills:
     name: Manage Do Not Contact suppression
     api: openapi/persistiq-openapi.yml
     operations: [listDncDomains, createDncDomain]
+  - file: persistiq-handle-campaign-replies.md
+    name: Handle campaign replies and wire up webhooks
+    api: openapi/persistiq-api-v1-openapi.json
+    generated: '2026-08-13'
+    source: https://api.persistiq.com/api-docs/v1/swagger.json
+    operations:
+      - 'GET /v1/campaigns'
+      - 'GET /v1/campaigns/{campaign_id}/replies'
+      - 'POST /v1/campaigns/{campaign_id}/replies'
+      - 'GET /v1/webhook_plugin'
+      - 'PUT /v1/webhook_plugin'
+    notes: >-
+      Grounded in PersistIQ's own OpenAPI 3.0.1 document, which declares no
+      operationIds — steps cite method+path, which is what the spec guarantees.
+      The reply and webhook surfaces do not exist in the derived per-tag specs.
+x-round-2:
+  date: '2026-08-13'
+  note: >-
+    Skills 1-3 remain grounded in the derived per-tag OpenAPIs in openapi/,
+    which carry real operationIds verified by grep. Skill 4 covers the surfaces
+    only the official specification exposes.

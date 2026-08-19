@@ -1,0 +1,64 @@
+generated: '2026-08-13'
+method: searched
+source: http://help.persistiq.com/en/collections/27832-what-s-new
+scheme: undated-article-collection
+current_version: v1
+notes: >-
+  PersistIQ does not publish a versioned API changelog. The only product-update
+  surface it maintains is the "What's New" collection in its Intercom knowledge
+  base ("View the latest updates and additions to PersistIQ"), which holds 7
+  feature articles. Entries carry no release version; the dates below are the
+  Intercom `lastUpdatedDate` for each article, read from the page metadata.
+
+  The collection is stale: the most recent entry was last touched 2021-10-03 and
+  four of the seven date to 2018. Nothing in it describes an API change — the
+  articles are end-user feature notes, so an integrator watching this page would
+  learn nothing about v1 contract changes.
+
+  A separate dated changelog did exist on Canny (persistiq.canny.io/changelog,
+  still present in search indexes with entries such as "New Webhook Integration").
+  That board is gone: every path under persistiq.canny.io answers HTTP 200 with a
+  single-page-app shell that renders "Company Not Found — There is no such
+  company." It is a soft-200, not a live changelog, and is recorded here as an
+  absence rather than a source.
+entries:
+  - title: Tags
+    date: '2021-10-03'
+    url: http://help.persistiq.com/en/articles/1882352-tags
+    breaking: false
+    highlights: Creating tags to organize your prospects.
+  - title: Skip Email Steps Within a Campaign
+    date: '2021-08-30'
+    url: http://help.persistiq.com/en/articles/1867745-skip-email-steps-within-a-campaign
+    breaking: false
+  - title: Sender Variables
+    date: '2019-04-03'
+    url: http://help.persistiq.com/en/articles/1833241-sender-variables
+    breaking: false
+  - title: Sort Activities by Engagement
+    date: '2018-05-08'
+    url: http://help.persistiq.com/en/articles/1882362-sort-activities-by-engagement
+    breaking: false
+  - title: Add prospects from one campaign to another campaign
+    date: '2018-04-27'
+    url: http://help.persistiq.com/en/articles/1841525-add-prospects-from-one-campaign-to-another-campaign
+    breaking: false
+  - title: GDPR Overview
+    date: '2018-04-25'
+    url: http://help.persistiq.com/en/articles/1756117-gdpr-overview
+    breaking: false
+  - title: Move prospects to a different step
+    date: '2018-04-24'
+    url: http://help.persistiq.com/en/articles/1833036-move-prospects-to-a-different-step
+    breaking: false
+entry_count: 7
+last_entry: '2021-10-03'
+api_changelog: false
+x-evidence:
+  - url: http://help.persistiq.com/en/collections/27832-what-s-new
+    status: 200
+    fetched: '2026-08-13'
+  - url: https://persistiq.canny.io/changelog
+    status: 200
+    observed: SPA shell rendering "Company Not Found" — dead board, treated as absent
+    fetched: '2026-08-13'

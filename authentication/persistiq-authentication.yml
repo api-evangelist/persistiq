@@ -1,17 +1,57 @@
-generated: '2026-07-20'
-method: derived
-source: openapi/persistiq-openapi.yml
+generated: '2026-08-13'
+method: searched
+source: https://api.persistiq.com/api-docs/v1/swagger.json
+docs: https://apidocs.persistiq.com/
 summary:
   types:
   - apiKey
   api_key_in:
   - header
+  oauth2_flows: []
+  scopes: none
 schemes:
-- name: ApiKeyAuth
+- name: api_key
   type: apiKey
   in: header
   parameter: x-api-key
-  description: Company-wide API key. Grants access to read and write all users' data within
-    the company. Include it in the header of every request.
+  description: >-
+    Company-wide API key. Grants read and write access to all users' data within
+    the company. Include it in the header of every request. PersistIQ's own
+    OpenAPI states it is "API key found in Settings > Integrations > API Key".
+  applied: global
+  applied_note: >-
+    Declared at the document root as `security: [{api_key: []}]`, so it applies
+    to all 21 operations; no operation overrides or opts out.
   sources:
+  - openapi/persistiq-api-v1-openapi.json
   - openapi/persistiq-openapi.yml
+key_management:
+  location: PersistIQ app, Settings > Integrations > API Key
+  rotation: not documented
+  per_user_keys: false
+  expiry: none documented
+  notes: >-
+    One key per company, not per user. There is no scope surface, no key
+    rotation endpoint, and no way to issue a reduced-privilege key — any holder
+    of the key can read and write every user's prospects, campaigns, replies and
+    webhook destinations. That is the single most important fact for anyone
+    handing this key to an agent.
+unauthenticated_behaviour:
+  method: probed
+  fetched: '2026-08-13'
+  request: GET https://api.persistiq.com/v1/users
+  http_status: 401
+  body: >-
+    {"status":"error","error":{"reason":"unauthorized","message":"Failed to find
+    api key: .  Did you set header 'x-api-key' ...}}
+  notes: >-
+    A missing key returns 401 with the standard error envelope and a `reason` of
+    `unauthorized`. Rate-limit headers are still returned on the 401.
+oauth: false
+mtls: false
+openid_connect: false
+notes: >-
+  Upgraded from derived to searched on 2026-08-13 against PersistIQ's own
+  OpenAPI 3.0.1 document, which names the scheme `api_key` (an earlier round
+  guessed `ApiKeyAuth` from the reference prose). No OAuth 2.0, OIDC or mTLS
+  surface exists, so no scopes/ artifact is emitted — there is nothing to scope.

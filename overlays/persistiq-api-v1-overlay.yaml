@@ -1,0 +1,72 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the official PersistIQ API V1 specification
+  version: 1.0.0
+extends: openapi/persistiq-api-v1-openapi.json
+x-apievangelist:
+  generated: '2026-08-13'
+  method: generated
+  source: https://api.persistiq.com/api-docs/v1/swagger.json
+  note: >-
+    Enhancements over PersistIQ's own OpenAPI 3.0.1 document. The original is
+    saved verbatim and is never mutated. The largest real gap in the published
+    spec is that not one of its 21 operations declares an operationId, which is
+    why the derived per-tag specs in openapi/ remain the grounding source for
+    skills and workflows.
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enrichment: '2026-08-13'
+      x-apievangelist-source: https://api.persistiq.com/api-docs/v1/swagger.json
+      x-apievangelist-discovery: >-
+        Discovered via the Swagger UI bundle at https://api.persistiq.com/api-docs,
+        whose configObject names /api-docs/v1/swagger.json. Not linked from the
+        published API reference at apidocs.persistiq.com.
+      x-api-category:
+        - sales-engagement
+        - outbound
+        - crm
+  - target: $.info
+    update:
+      x-rate-limit:
+        documented:
+          limit: 100
+          window: 1 minute
+          scope: per-api-key
+          source: https://apidocs.persistiq.com/
+        observed:
+          header: x-ratelimit-limit
+          value: 500
+          observed_on: GET https://api.persistiq.com/v1/users (unauthenticated, 401)
+          observed_at: '2026-08-13'
+        note: >-
+          The live API advertises x-ratelimit-limit 500 while the published
+          reference states 100 requests per minute. Both are recorded; neither
+          is corrected into the other.
+  - target: $.info
+    update:
+      x-request-id-header: x-request-id
+      x-request-id-note: >-
+        Every response carries an x-request-id header (observed live), usable as
+        the correlation id when contacting support.
+  - target: $.info
+    update:
+      x-webhooks-artifact: asyncapi/persistiq-webhooks.yml
+      x-webhooks-note: >-
+        The five webhook events configurable through /v1/webhook_plugin are
+        catalogued in asyncapi/persistiq-webhooks.yml. PersistIQ publishes no
+        AsyncAPI document and no webhook payload schemas.
+  - target: $.info
+    update:
+      x-missing-operationids: true
+      x-missing-operationids-note: >-
+        None of the 21 operations in the published document declares an
+        operationId. Tooling that generates clients or agent tools from this
+        spec will synthesise names from method+path.
+  - target: $.components.securitySchemes.api_key
+    update:
+      x-scope: company-wide
+      x-note: >-
+        A single company-wide API key grants read and write access to all users'
+        data in the company. There is no per-user key, no OAuth, and no scope
+        surface. Found in the app under Settings > Integrations > API Key.

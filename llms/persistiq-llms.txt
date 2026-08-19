@@ -1,35 +1,71 @@
 # PersistIQ
 
-> PersistIQ is a sales engagement platform for small teams to find new customers, start conversations, and personalize sales outreach at scale. Its REST API (v1) exposes users, leads (prospects), lead statuses and fields, campaigns, activity events, and Do Not Contact domains. Authentication is a company-wide API key sent in the `x-api-key` header.
+> PersistIQ is a sales engagement platform for small teams to find new customers, start conversations, and personalize sales outreach at scale. Its REST API (v1) exposes users, leads (prospects), lead statuses and fields, tags, campaigns (including duplication and inbox replies), activity events, Do Not Contact domains, and a webhook plugin. Authentication is a single company-wide API key sent in the `x-api-key` header.
 
 ## API
-- [PersistIQ API v1 (OpenAPI)](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/openapi/persistiq-openapi.yml): Derived OpenAPI 3.1 for the documented REST surface. Base URL https://api.persistiq.com
+- [PersistIQ API V1 — official OpenAPI 3.0.1](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/openapi/persistiq-api-v1-openapi.json): PersistIQ's own specification, saved verbatim from https://api.persistiq.com/api-docs/v1/swagger.json. 14 paths, 21 operations, 13 schemas. Base URL https://api.persistiq.com
+- [Swagger UI](https://api.persistiq.com/api-docs): PersistIQ's live spec browser on the API host. Not linked from the published reference.
+- [Derived per-tag OpenAPIs](https://github.com/api-evangelist/persistiq/tree/main/openapi): one document per resource, carrying the `operationId`s the official spec omits.
 - [API Reference](https://apidocs.persistiq.com/): PersistIQ's published API documentation.
 
 ## Authentication
-- Header: `x-api-key: YOUR_API_KEY` (company-wide key, read/write access to all users' data).
+- Header: `x-api-key: YOUR_API_KEY`. One key per **company**, not per user — it reads and writes every user's data. Found in the app under Settings > Integrations > API Key.
+- No OAuth, no OIDC, no scopes, no per-user keys, no documented rotation. There is no way to hand an agent a reduced-privilege credential.
+- Missing/invalid key returns `401` with `{"status":"error","error":{"reason":"unauthorized", ...}}`.
 - [Authentication profile](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/authentication/persistiq-authentication.yml)
 
 ## Conventions
-- Pagination: cursor via `has_more` + `next_page` URL (100 items for leads/campaigns/DNC domains, 500 for events).
-- Rate limit: 100 requests/minute per API key; `X-RateLimit-Limit`/`Remaining`/`Reset` headers; 429 on exceed.
-- Errors: custom JSON envelope `{ "status": "error", "error": { "reason", "message" } }`.
+- Pagination: **page number**, not cursor — pass `page` (integer) on every list operation. Responses wrap the collection in `has_more` (boolean) + `next_page` (absolute URL). Page sizes: 100 for leads/campaigns/DNC domains, 500 for events.
+- Rate limit: the reference documents 100 requests/minute per key, but the live API advertised `x-ratelimit-limit: 500` on 2026-08-13. **Read the headers, not the docs.** `X-RateLimit-Limit`/`Remaining`/`Reset`; 429 on exceed.
+- Tracing: every response carries `x-request-id` (UUID) and `x-runtime`. Undocumented but reliable — quote the request id to support.
+- Idempotency: **not supported.** There is no idempotency-key header. Duplicate lead creation is controlled per-request with the `dup` argument (`skip` | `update`) on `POST /v1/leads`. Retrying any other write is unsafe.
+- Errors: custom JSON envelope `{ "status": "error", "error": { "reason", "message" } }`; batch operations return an `errors` array. Not RFC 9457. Only 6 of 21 operations declare any error response in the spec.
+- Identifiers: opaque "hashed IDs". The `u_`/`l_`/`c_` style prefixes appear in examples but are not contractual — do not parse them.
 - [Conventions](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/conventions/persistiq-conventions.yml)
 - [Error catalog](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/errors/persistiq-problem-types.yml)
 - [Rate limits](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/rate-limits/persistiq-rate-limits.yml)
+- [Data model](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/data-model/persistiq-data-model.yml)
 
 ## Resources
 - Users: `GET /v1/users`
-- Leads: `GET /v1/leads`, `GET /v1/leads/{id}`, `POST /v1/leads`, `PUT /v1/leads/{id}`
-- Lead statuses: `GET /v1/lead_statuses`
-- Lead fields: `GET /v1/lead_fields`
-- Campaigns: `GET /v1/campaigns`, `POST /v1/campaigns/{id}/leads`, `DELETE /v1/campaigns/{id}/leads/{lead_id}`
+- Leads: `GET /v1/leads`, `GET /v1/leads/{id}`, `POST /v1/leads`, `PATCH /v1/leads/{id}`
+- Lead statuses: `GET /v1/lead_statuses` (unpaged)
+- Lead fields: `GET /v1/lead_fields` (unpaged)
+- Tags: `GET /v1/tags`
+- Campaigns: `GET /v1/campaigns`, `POST /v1/campaigns`, `POST /v1/campaigns/duplicate`
+- Campaign leads: `GET /v1/campaigns/{campaign_id}/leads`, `POST /v1/campaigns/{campaign_id}/leads`, `DELETE /v1/campaigns/{campaign_id}/leads/{id}`
+- Replies: `GET /v1/campaigns/{campaign_id}/replies`, `POST /v1/campaigns/{campaign_id}/replies`
 - Events: `GET /v1/events`
 - Do Not Contact domains: `GET /v1/dnc_domains`, `POST /v1/dnc_domains`
+- Webhook plugin: `GET /v1/webhook_plugin`, `PUT /v1/webhook_plugin`
+
+## Events and webhooks
+- Five webhook events, each with its own enable flag and destination URL, configured through `PUT /v1/webhook_plugin`: `post_new_prospect`, `post_updated_prospect`, `raw_events`, `post_email_reply`, `post_email_opened`.
+- No AsyncAPI document, no payload schemas, no signing or retry documentation.
+- [Webhook catalog](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/asyncapi/persistiq-webhooks.yml)
+
+## Agents
+- No MCP server exists — hosted or stdio. The candidate tool list below is a design starting point, not something an agent can connect to.
+- No A2A agent card: `/.well-known/agent-card.json` and `/.well-known/agent.json` both 404 on every host (2026-08-13).
+- No `/.well-known/` documents of any kind are served.
+- [Candidate MCP manifest](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/mcp/persistiq-mcp.yml)
+- [Agent skills](https://github.com/api-evangelist/persistiq/tree/main/skills)
+- [Agentic access contracts](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/agentic-access/persistiq-agentic-access.yml)
+
+## Operations
+- No SLA, no deprecation policy, no `Sunset` header support.
+- Status page: a Statuspage tenant is registered at persistiq.statuspage.io but it is **inactive** — there is no live status surface.
+- Changelog: the help centre's "What's New" collection, last updated 2021-10-03, and it does not cover API changes. The former Canny changelog board is gone.
+- No SDKs. The three community wrappers (npm, PyPI, RubyGems) last shipped in 2015 and predate a third of the current API.
+- [Lifecycle](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/lifecycle/persistiq-lifecycle.yml)
+- [Changelog](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/changelog/persistiq-changelog.yml)
+- [Packages](https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/packages/persistiq-packages.yml)
 
 ## Docs
 - [Documentation](https://apidocs.persistiq.com/)
+- [Getting started guide](http://help.persistiq.com/en/articles/466972-getting-started-guide)
+- [Help centre](http://help.persistiq.com/en/)
 - [Integrations](https://www.persistiq.com/integrations/)
-- [Pricing](https://www.persistiq.com/pricing/)
+- [Pricing](https://www.persistiq.com/pricing/): no plans are published — pricing is sales-gated behind a demo request.
 - [Blog](https://blog.persistiq.com/)
 - [Sign up](https://persistiq.com/users/sign_up)

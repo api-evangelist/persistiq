@@ -1,0 +1,66 @@
+generated: '2026-08-13'
+method: searched
+source: https://api.persistiq.com/api-docs/v1/swagger.json
+spec_type: null
+notes: >-
+  PersistIQ publishes no AsyncAPI document. It does ship a first-party webhook
+  surface, configured through the REST API itself: GET/PUT /v1/webhook_plugin on
+  api.persistiq.com. The webhook catalog below is taken verbatim from the
+  `webhook_plugin_type` schema and the PUT request body in PersistIQ's own
+  OpenAPI 3.0.1 document (fetched 2026-08-13), so every event name and URL field
+  is provider-published, not inferred. Payload schemas for the delivered events
+  are NOT published — PersistIQ documents which events can fire and where to
+  send them, but not the body shape of the delivery.
+surface:
+  style: http-callback
+  configuration:
+    read_operation: GET /v1/webhook_plugin
+    write_operation: PUT /v1/webhook_plugin
+    auth: x-api-key header (company-wide key)
+    model: >-
+      One webhook "plugin" per company. Each event has an independent boolean
+      toggle plus its own destination URL, so a company can fan different events
+      out to different endpoints. Setting the boolean false disables that event.
+  delivery:
+    transport: HTTPS POST to the configured URL
+    signing: not documented
+    retries: not documented
+    payload_schema: not published
+events:
+  - name: post_new_prospect
+    label: New prospect created
+    enable_field: post_new_prospect
+    url_field: post_new_prospect_url
+    description: Fires when a new prospect (lead) is created in PersistIQ.
+  - name: post_updated_prospect
+    label: Prospect updated
+    enable_field: post_updated_prospect
+    url_field: post_updated_prospect_url
+    description: Fires when an existing prospect (lead) is updated.
+  - name: raw_events
+    label: Raw activity events
+    enable_field: raw_events
+    url_field: raw_events_url
+    description: >-
+      Fires the raw activity event stream — the same event objects returned by
+      GET /v1/events (opens, clicks, sends, replies, bounces, opt-outs).
+  - name: post_email_reply
+    label: Email reply received
+    enable_field: post_email_reply
+    url_field: post_email_reply_url
+    description: Fires when a prospect replies to a campaign email.
+  - name: post_email_opened
+    label: Email opened
+    enable_field: post_email_opened
+    url_field: post_email_opened_url
+    description: Fires when a campaign email is opened by a prospect.
+event_count: 5
+related:
+  - openapi/persistiq-api-v1-openapi.json
+  - openapi/persistiq-events-api-openapi.yml
+x-evidence:
+  fetched: '2026-08-13'
+  url: https://api.persistiq.com/api-docs/v1/swagger.json
+  http_status: 200
+  content_type: application/json
+  path: /v1/webhook_plugin

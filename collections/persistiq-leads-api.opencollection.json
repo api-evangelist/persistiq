@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PersistIQ Campaigns Leads API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Leads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List leads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.persistiq.com/v1/leads",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filters leads by status name."
+              },
+              {
+                "name": "updated_after",
+                "value": "",
+                "type": "query",
+                "description": "Gets leads updated after the specified time."
+              }
+            ]
+          },
+          "docs": "Retrieves leads for your company. Each response contains a maximum of 100 leads; when more exist, `has_more` is true and `next_page` holds the URL for the next page."
+        },
+        {
+          "info": {
+            "name": "Create leads",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.persistiq.com/v1/leads",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates leads, up to 10 at a time. If a lead with the same email already exists, use `dup` = `update` or `skip` to control duplicate handling."
+        },
+        {
+          "info": {
+            "name": "View a single lead",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.persistiq.com/v1/leads/:lead_id",
+            "params": [
+              {
+                "name": "lead_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "View a single lead"
+        },
+        {
+          "info": {
+            "name": "Update a lead",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.persistiq.com/v1/leads/:lead_id",
+            "params": [
+              {
+                "name": "lead_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a single lead. If `status` or `status_id` are specified, the lead's status changes. The `data` hash sets custom and built-in lead attributes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

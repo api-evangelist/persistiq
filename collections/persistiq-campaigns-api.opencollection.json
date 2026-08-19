@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PersistIQ Campaigns API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Campaigns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.persistiq.com/v1/campaigns",
+            "params": [
+              {
+                "name": "lead_id",
+                "value": "",
+                "type": "query",
+                "description": "Campaigns which the lead belongs to."
+              },
+              {
+                "name": "owner_id",
+                "value": "",
+                "type": "query",
+                "description": "Campaigns with owner that has the specified ID."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Campaigns with the specified name."
+              }
+            ]
+          },
+          "docs": "Retrieves campaigns. Each response contains a maximum of 100 campaigns; when more exist, `has_more` is true and `next_page` holds the next URL."
+        },
+        {
+          "info": {
+            "name": "Add leads to a campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.persistiq.com/v1/campaigns/:campaign_id/leads",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds up to 100 leads to a campaign. If more than 100 lead ids are provided, the API responds with 400 Bad Request."
+        },
+        {
+          "info": {
+            "name": "Remove a lead from a campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.persistiq.com/v1/campaigns/:campaign_id/leads/:lead_id",
+            "params": [
+              {
+                "name": "campaign_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lead_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a lead from a campaign"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

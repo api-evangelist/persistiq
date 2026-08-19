@@ -24,14 +24,27 @@ pagination:
     campaigns: 100
     dnc_domains: 100
     events: 500
+  request_params:
+    - name: page
+      in: query
+      type: integer
+      description: Page number for pagination.
+      applies_to: >-
+        every list operation except /v1/lead_fields and /v1/lead_statuses, which
+        are unpaged
   response_fields:
     - has_more
     - next_page
   notes: >-
-    List responses include `has_more` (boolean) and `next_page` (an absolute URL
-    to the next page). Follow `next_page` until `has_more` is false.
+    Page-number pagination, not opaque cursors: every list operation takes a
+    `page` integer query parameter (confirmed in PersistIQ's official OpenAPI).
+    Responses wrap the collection in an envelope carrying `has_more` (boolean)
+    and `next_page` (an absolute URL to the next page). Either walk `page`
+    yourself or follow `next_page` until `has_more` is false. An earlier round
+    recorded this as "cursor"; the official document corrects it.
 rate_limiting:
-  limit: 100
+  documented_limit: 100
+  observed_limit: 500
   window: 1 minute
   scope: per-api-key
   response_status: 429
@@ -39,7 +52,11 @@ rate_limiting:
     - X-RateLimit-Limit
     - X-RateLimit-Remaining
     - X-RateLimit-Reset
-  notes: See rate-limits/persistiq-rate-limits.yml.
+  notes: >-
+    The published reference states 100 requests per minute per key. A live
+    unauthenticated request on 2026-08-13 returned `x-ratelimit-limit: 500` and
+    `x-ratelimit-remaining: 498`. Read the headers at runtime rather than the
+    documented number. See rate-limits/persistiq-rate-limits.yml.
 error_envelope:
   shape: >-
     { "status": "error", "error": { "reason": "...", "message": "..." } }
@@ -63,10 +80,37 @@ identifiers:
     cl_ (campaign lead), lss_ (lead status), lcf_ (lead field), evt_ (event),
     dom_ (DNC domain), mbox_ (mailbox).
 request_tracing:
-  request_id_header: null
-  notes: No request-id / correlation header is documented.
+  request_id_header: x-request-id
+  method: probed
+  notes: >-
+    Undocumented but real: every response carries an `x-request-id` header (a
+    UUID) plus `x-runtime`. Observed live on GET https://api.persistiq.com/v1/users
+    (401) on 2026-08-13. Usable as the correlation id when contacting support.
+webhooks:
+  supported: true
+  configuration: GET/PUT /v1/webhook_plugin
+  events: 5
+  catalog: asyncapi/persistiq-webhooks.yml
+  notes: >-
+    Per-company webhook plugin with an independent enable flag and destination
+    URL per event. Signing, retry behaviour and payload schemas are not
+    published.
 cross_references:
   errors: errors/persistiq-problem-types.yml
   authentication: authentication/persistiq-authentication.yml
   rate_limits: rate-limits/persistiq-rate-limits.yml
   lifecycle: lifecycle/persistiq-lifecycle.yml
+  webhooks: asyncapi/persistiq-webhooks.yml
+  openapi: openapi/persistiq-api-v1-openapi.json
+x-round-2:
+  date: '2026-08-13'
+  source: https://api.persistiq.com/api-docs/v1/swagger.json
+  note: >-
+    Reconciled against PersistIQ's official OpenAPI 3.0.1 document. Three
+    corrections: (1) pagination is a `page` query parameter on every list
+    operation, used alongside the has_more/next_page envelope; (2) an
+    `x-request-id` correlation header is returned on every response; (3) the
+    live API advertises `x-ratelimit-limit: 500` while the published reference
+    states 100 requests per minute — see rate-limits/. Idempotency remains
+    unsupported: no idempotency-key header or parameter appears anywhere in the
+    official document, so no Idempotency pointer is emitted.

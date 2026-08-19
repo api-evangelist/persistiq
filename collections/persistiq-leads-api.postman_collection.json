@@ -1,0 +1,1422 @@
+{
+  "item": [
+    {
+      "id": "8cda7e2f-f182-44fb-8522-5886b80b076c",
+      "name": "Leads",
+      "description": {
+        "content": "Leads (prospects)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c7e866b9-038b-4ef6-a736-693f703cdc44",
+          "name": "List leads",
+          "request": {
+            "name": "List leads",
+            "description": {
+              "content": "Retrieves leads for your company. Each response contains a maximum of 100 leads; when more exist, `has_more` is true and `next_page` holds the URL for the next page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "leads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filters leads by status name."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_after",
+                  "value": "<dateTime>",
+                  "description": "Gets leads updated after the specified time."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba72564b-27d1-4f6a-8257-87dc0bb10b45",
+              "name": "A page of leads",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "active"
+                    },
+                    {
+                      "key": "updated_after",
+                      "value": "2017-10-17T07:37:00-07:00"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"success\",\n  \"has_more\": true,\n  \"next_page\": \"string\",\n  \"leads\": [\n    {\n      \"id\": \"l_abc001\",\n      \"status\": \"active\",\n      \"bounced\": true,\n      \"data\": {\n        \"email\": \"undsRgePuMmD7I@LpJDwDuPcxkhYQpTxtMH.jlzh\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"company_name\": \"string\",\n        \"address\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"phone\": \"string\",\n        \"title\": \"string\",\n        \"industry\": \"string\",\n        \"snippet\": \"string\",\n        \"snippet2\": \"string\",\n        \"snippet3\": \"string\",\n        \"snippet4\": \"string\"\n      }\n    },\n    {\n      \"id\": \"l_abc001\",\n      \"status\": \"active\",\n      \"bounced\": false,\n      \"data\": {\n        \"email\": \"9j5WyUROCvY@XXojPpBPGP.ld\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"company_name\": \"string\",\n        \"address\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"phone\": \"string\",\n        \"title\": \"string\",\n        \"industry\": \"string\",\n        \"snippet\": \"string\",\n        \"snippet2\": \"string\",\n        \"snippet3\": \"string\",\n        \"snippet4\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2589f98a-74ec-4b29-bbf4-b8092c23d723",
+              "name": "Unauthorized - your API key is wrong",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "active"
+                    },
+                    {
+                      "key": "updated_after",
+                      "value": "2017-10-17T07:37:00-07:00"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63f03a39-a99e-40c3-b5ae-34e4439f589b",
+              "name": "Too Many Requests - more than 100 requests were sent in one minute.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "active"
+                    },
+                    {
+                      "key": "updated_after",
+                      "value": "2017-10-17T07:37:00-07:00"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum allowed requests per minute.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "482"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests left for the current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "482"
+                },
+                {
+                  "disabled": false,
+                  "description": "UTC epoch seconds when the window resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "482"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08394afb-3f97-410c-9b3f-c0027ac9ed27",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "active"
+                    },
+                    {
+                      "key": "updated_after",
+                      "value": "2017-10-17T07:37:00-07:00"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "25db1ff1-65a3-46ec-ab28-b50fc7d28713",
+          "name": "Create leads",
+          "request": {
+            "name": "Create leads",
+            "description": {
+              "content": "Creates leads, up to 10 at a time. If a lead with the same email already exists, use `dup` = `update` or `skip` to control duplicate handling.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "leads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"leads\": [\n    {\n      \"email\": \"<email>\",\n      \"first_name\": \"<string,null>\",\n      \"last_name\": \"<string,null>\",\n      \"company_name\": \"<string,null>\",\n      \"address\": \"<string,null>\",\n      \"city\": \"<string,null>\",\n      \"state\": \"<string,null>\",\n      \"phone\": \"<string,null>\",\n      \"title\": \"<string,null>\",\n      \"industry\": \"<string,null>\",\n      \"snippet\": \"<string,null>\",\n      \"snippet2\": \"<string,null>\",\n      \"snippet3\": \"<string,null>\",\n      \"snippet4\": \"<string,null>\"\n    },\n    {\n      \"email\": \"<email>\",\n      \"first_name\": \"<string,null>\",\n      \"last_name\": \"<string,null>\",\n      \"company_name\": \"<string,null>\",\n      \"address\": \"<string,null>\",\n      \"city\": \"<string,null>\",\n      \"state\": \"<string,null>\",\n      \"phone\": \"<string,null>\",\n      \"title\": \"<string,null>\",\n      \"industry\": \"<string,null>\",\n      \"snippet\": \"<string,null>\",\n      \"snippet2\": \"<string,null>\",\n      \"snippet3\": \"<string,null>\",\n      \"snippet4\": \"<string,null>\"\n    }\n  ],\n  \"dup\": \"skip\",\n  \"creator_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "598cb4db-382a-428e-9627-83703f017eda",
+              "name": "Created leads (with per-lead errors, if any)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"leads\": [\n    {\n      \"email\": \"VWYh8GH@kHbCiuIn.nz\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company_name\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"phone\": \"string\",\n      \"title\": \"string\",\n      \"industry\": \"string\",\n      \"snippet\": \"string\",\n      \"snippet2\": \"string\",\n      \"snippet3\": \"string\",\n      \"snippet4\": \"string\"\n    },\n    {\n      \"email\": \"CgxfVrXbovLJmQL@BJVjPdd.yv\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company_name\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"phone\": \"string\",\n      \"title\": \"string\",\n      \"industry\": \"string\",\n      \"snippet\": \"string\",\n      \"snippet2\": \"string\",\n      \"snippet3\": \"string\",\n      \"snippet4\": \"string\"\n    }\n  ],\n  \"dup\": \"skip\",\n  \"creator_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"leads\": [\n    {\n      \"id\": \"l_abc001\",\n      \"status\": \"active\",\n      \"bounced\": false,\n      \"data\": {\n        \"email\": \"sUM@tZvaPY.jplj\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"company_name\": \"string\",\n        \"address\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"phone\": \"string\",\n        \"title\": \"string\",\n        \"industry\": \"string\",\n        \"snippet\": \"string\",\n        \"snippet2\": \"string\",\n        \"snippet3\": \"string\",\n        \"snippet4\": \"string\"\n      }\n    },\n    {\n      \"id\": \"l_abc001\",\n      \"status\": \"active\",\n      \"bounced\": false,\n      \"data\": {\n        \"email\": \"PxvkVQm@LLVlWHMCuzSpCRkBmBnfgxkAW.hh\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"company_name\": \"string\",\n        \"address\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"phone\": \"string\",\n        \"title\": \"string\",\n        \"industry\": \"string\",\n        \"snippet\": \"string\",\n        \"snippet2\": \"string\",\n        \"snippet3\": \"string\",\n        \"snippet4\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3685f7e-7515-4720-8916-539f403bb239",
+              "name": "Bad Request - missing a required parameter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"leads\": [\n    {\n      \"email\": \"VWYh8GH@kHbCiuIn.nz\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company_name\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"phone\": \"string\",\n      \"title\": \"string\",\n      \"industry\": \"string\",\n      \"snippet\": \"string\",\n      \"snippet2\": \"string\",\n      \"snippet3\": \"string\",\n      \"snippet4\": \"string\"\n    },\n    {\n      \"email\": \"CgxfVrXbovLJmQL@BJVjPdd.yv\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company_name\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"phone\": \"string\",\n      \"title\": \"string\",\n      \"industry\": \"string\",\n      \"snippet\": \"string\",\n      \"snippet2\": \"string\",\n      \"snippet3\": \"string\",\n      \"snippet4\": \"string\"\n    }\n  ],\n  \"dup\": \"skip\",\n  \"creator_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0711c5bb-1896-42de-b747-4f4919ab1b94",
+              "name": "Unauthorized - your API key is wrong",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"leads\": [\n    {\n      \"email\": \"VWYh8GH@kHbCiuIn.nz\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company_name\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"phone\": \"string\",\n      \"title\": \"string\",\n      \"industry\": \"string\",\n      \"snippet\": \"string\",\n      \"snippet2\": \"string\",\n      \"snippet3\": \"string\",\n      \"snippet4\": \"string\"\n    },\n    {\n      \"email\": \"CgxfVrXbovLJmQL@BJVjPdd.yv\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company_name\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"phone\": \"string\",\n      \"title\": \"string\",\n      \"industry\": \"string\",\n      \"snippet\": \"string\",\n      \"snippet2\": \"string\",\n      \"snippet3\": \"string\",\n      \"snippet4\": \"string\"\n    }\n  ],\n  \"dup\": \"skip\",\n  \"creator_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d501909d-a672-4f8c-853f-e10ec7295dd6",
+              "name": "Too Many Requests - more than 100 requests were sent in one minute.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"leads\": [\n    {\n      \"email\": \"VWYh8GH@kHbCiuIn.nz\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company_name\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"phone\": \"string\",\n      \"title\": \"string\",\n      \"industry\": \"string\",\n      \"snippet\": \"string\",\n      \"snippet2\": \"string\",\n      \"snippet3\": \"string\",\n      \"snippet4\": \"string\"\n    },\n    {\n      \"email\": \"CgxfVrXbovLJmQL@BJVjPdd.yv\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company_name\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"phone\": \"string\",\n      \"title\": \"string\",\n      \"industry\": \"string\",\n      \"snippet\": \"string\",\n      \"snippet2\": \"string\",\n      \"snippet3\": \"string\",\n      \"snippet4\": \"string\"\n    }\n  ],\n  \"dup\": \"skip\",\n  \"creator_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum allowed requests per minute.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "482"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests left for the current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "482"
+                },
+                {
+                  "disabled": false,
+                  "description": "UTC epoch seconds when the window resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "482"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a62e61d-bdc4-439e-b7a2-732081c37eb6",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"leads\": [\n    {\n      \"email\": \"VWYh8GH@kHbCiuIn.nz\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company_name\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"phone\": \"string\",\n      \"title\": \"string\",\n      \"industry\": \"string\",\n      \"snippet\": \"string\",\n      \"snippet2\": \"string\",\n      \"snippet3\": \"string\",\n      \"snippet4\": \"string\"\n    },\n    {\n      \"email\": \"CgxfVrXbovLJmQL@BJVjPdd.yv\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company_name\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"phone\": \"string\",\n      \"title\": \"string\",\n      \"industry\": \"string\",\n      \"snippet\": \"string\",\n      \"snippet2\": \"string\",\n      \"snippet3\": \"string\",\n      \"snippet4\": \"string\"\n    }\n  ],\n  \"dup\": \"skip\",\n  \"creator_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9217c300-48cf-4d25-8e5c-2f31ed524b85",
+          "name": "View a single lead",
+          "request": {
+            "name": "View a single lead",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "leads",
+                ":lead_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lead_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d16987b-6ad7-4f1f-bc69-95ddc3a9565a",
+              "name": "A single lead",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads",
+                    ":lead_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lead_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"leads\": [\n    {\n      \"id\": \"l_abc001\",\n      \"status\": \"active\",\n      \"bounced\": false,\n      \"data\": {\n        \"email\": \"sUM@tZvaPY.jplj\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"company_name\": \"string\",\n        \"address\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"phone\": \"string\",\n        \"title\": \"string\",\n        \"industry\": \"string\",\n        \"snippet\": \"string\",\n        \"snippet2\": \"string\",\n        \"snippet3\": \"string\",\n        \"snippet4\": \"string\"\n      }\n    },\n    {\n      \"id\": \"l_abc001\",\n      \"status\": \"active\",\n      \"bounced\": false,\n      \"data\": {\n        \"email\": \"PxvkVQm@LLVlWHMCuzSpCRkBmBnfgxkAW.hh\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"company_name\": \"string\",\n        \"address\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"phone\": \"string\",\n        \"title\": \"string\",\n        \"industry\": \"string\",\n        \"snippet\": \"string\",\n        \"snippet2\": \"string\",\n        \"snippet3\": \"string\",\n        \"snippet4\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81546774-504a-4eb7-ace6-1be37af2d6f9",
+              "name": "Unauthorized - your API key is wrong",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads",
+                    ":lead_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lead_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da931e81-277a-4cf8-b9e3-f9b320d91d12",
+              "name": "Not Found - the specified data could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads",
+                    ":lead_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lead_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85b5fb79-8bef-42ec-a233-e12c2d04e07e",
+              "name": "Too Many Requests - more than 100 requests were sent in one minute.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads",
+                    ":lead_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lead_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum allowed requests per minute.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "482"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests left for the current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "482"
+                },
+                {
+                  "disabled": false,
+                  "description": "UTC epoch seconds when the window resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "482"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "203fc47c-3cbc-42b7-99f4-d66ce0dfc167",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads",
+                    ":lead_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lead_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2956cf9a-d573-454a-8873-a4eac691d71f",
+          "name": "Update a lead",
+          "request": {
+            "name": "Update a lead",
+            "description": {
+              "content": "Updates a single lead. If `status` or `status_id` are specified, the lead's status changes. The `data` hash sets custom and built-in lead attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "leads",
+                ":lead_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lead_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\",\n  \"status_id\": \"<string>\",\n  \"bounced\": \"<boolean>\",\n  \"optedout\": \"<boolean>\",\n  \"data\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "82eefbea-8a41-4789-a3bf-f25191e47fff",
+              "name": "The updated lead",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads",
+                    ":lead_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lead_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"status_id\": \"<string>\",\n  \"bounced\": \"<boolean>\",\n  \"optedout\": \"<boolean>\",\n  \"data\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"error\": {},\n  \"lead\": {\n    \"id\": \"l_abc001\",\n    \"status\": \"active\",\n    \"bounced\": true,\n    \"data\": {\n      \"email\": \"0aJ52yBvcz@RCAOyCuDfXOysZl.ctm\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"company_name\": \"string\",\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"phone\": \"string\",\n      \"title\": \"string\",\n      \"industry\": \"string\",\n      \"snippet\": \"string\",\n      \"snippet2\": \"string\",\n      \"snippet3\": \"string\",\n      \"snippet4\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3de35944-9c12-45c1-acd0-e787674f4e3d",
+              "name": "Bad Request - missing a required parameter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads",
+                    ":lead_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lead_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"status_id\": \"<string>\",\n  \"bounced\": \"<boolean>\",\n  \"optedout\": \"<boolean>\",\n  \"data\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46928158-d991-4133-90f3-3844d66bda1f",
+              "name": "Unauthorized - your API key is wrong",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads",
+                    ":lead_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lead_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"status_id\": \"<string>\",\n  \"bounced\": \"<boolean>\",\n  \"optedout\": \"<boolean>\",\n  \"data\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf9655e1-9041-4d0e-87af-317c405be6ec",
+              "name": "Not Found - the specified data could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads",
+                    ":lead_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lead_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"status_id\": \"<string>\",\n  \"bounced\": \"<boolean>\",\n  \"optedout\": \"<boolean>\",\n  \"data\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da941987-1782-47cc-9b4c-a40de8d63190",
+              "name": "Too Many Requests - more than 100 requests were sent in one minute.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads",
+                    ":lead_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lead_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"status_id\": \"<string>\",\n  \"bounced\": \"<boolean>\",\n  \"optedout\": \"<boolean>\",\n  \"data\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum allowed requests per minute.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "482"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests left for the current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "482"
+                },
+                {
+                  "disabled": false,
+                  "description": "UTC epoch seconds when the window resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "482"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3022407d-7068-491b-ae47-79710757b8dd",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "leads",
+                    ":lead_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "lead_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"status_id\": \"<string>\",\n  \"bounced\": \"<boolean>\",\n  \"optedout\": \"<boolean>\",\n  \"data\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.persistiq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f546ca17-7b06-4d10-b540-4f919442f7f2",
+    "name": "PersistIQ Campaigns Leads API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The PersistIQ API is a REST API for the PersistIQ sales engagement platform. It exposes users, leads (prospects), lead statuses and fields, campaigns (including adding and removing leads), activity events, and Do Not Contact (DNC) domains. Authentication is a company-wide API key sent in the `x-api-key` request header. Responses are JSON with a `status`/`errors` envelope, cursor pagination via `has_more` + `next_page`, and a per-key rate limit of 100 requests per minute surfaced through `X-RateLimit-*` headers. This specification was derived faithfully from PersistIQ's published API reference (apidocs.persistiq.com) and captures the documented request and response surface; it is not an official PersistIQ-published OpenAPI file.\n\nContact Support:\n Name: PersistIQ",
+      "type": "text/plain"
+    }
+  }
+}

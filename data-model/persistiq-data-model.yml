@@ -67,6 +67,96 @@ relationships:
     to: LeadStatus
     type: belongs_to
     via: status_id
+x-round-2:
+  date: '2026-08-13'
+  method: derived
+  source: openapi/persistiq-api-v1-openapi.json
+  note: >-
+    Reconciled against PersistIQ's official OpenAPI 3.0.1 document, which
+    declares 13 component schemas. Three entities below were absent from the
+    earlier derivation, and several field lists were incomplete.
+  added_entities:
+    - name: Tag
+      schema: tag_type
+      fields: [id, name]
+      listable: GET /v1/tags
+      notes: Labels applied to prospects to organize them.
+    - name: Reply
+      schema: reply_type
+      fields:
+        - id
+        - from_email
+        - to_emails
+        - cc_emails
+        - subject
+        - body
+        - preview
+        - sent_at
+        - sentiment
+        - kind
+        - lead_id
+        - campaign_id
+        - step_message_id
+      listable: GET /v1/campaigns/{campaign_id}/replies
+      notes: >-
+        The inbox object. Carries a `sentiment` field, which is the only derived
+        /scored attribute in the whole data model.
+    - name: WebhookPlugin
+      schema: webhook_plugin_type
+      fields:
+        - post_new_prospect
+        - post_new_prospect_url
+        - post_updated_prospect
+        - post_updated_prospect_url
+        - raw_events
+        - raw_events_url
+        - post_email_reply
+        - post_email_reply_url
+        - post_email_opened
+        - post_email_opened_url
+      singleton: true
+      notes: >-
+        One per company, not a collection — no id field. See
+        asyncapi/persistiq-webhooks.yml.
+  added_relationships:
+    - {from: Reply, to: Lead, type: belongs_to, via: lead_id}
+    - {from: Reply, to: Campaign, type: belongs_to, via: campaign_id}
+    - {from: WebhookPlugin, to: Event, type: emits, via: raw_events_url}
+  field_corrections:
+    - entity: Lead
+      spec_fields:
+        [id, status, data, creator_id, owner_id, bounced, optedout, sent_count,
+        replied_count, last_sent_at]
+      note: >-
+        creator_id, owner_id, optedout, sent_count, replied_count and
+        last_sent_at were missing from the earlier derivation. `data` is a free
+        -form object keyed by lead-field name, which is why LeadField exists as
+        a separate entity.
+    - entity: User
+      spec_fields: [id, name, email, activated, salesforce_id, default_mailbox_id, mailboxes]
+      note: >-
+        `mailboxes` is an inline array of {id, email, campaign_ids}, so Mailbox
+        is a real embedded entity reachable through GET /v1/users even though it
+        has no endpoint of its own.
+    - entity: Event
+      spec_fields: [id, event_type, data, created_at]
+      note: >-
+        The official schema is much thinner than the reference prose suggested —
+        the discriminator is `event_type` and everything else is inside an
+        untyped `data` object, so events cannot be statically typed from the
+        spec.
+    - entity: Campaign
+      spec_fields: [id, name, creator, stats]
+      note: >-
+        `stats` is an inline object with prospects_contacted, prospects_reached,
+        prospects_opened, prospects_replied, prospects_bounced,
+        prospects_optedout and total_prospects.
+  id_style_correction: >-
+    The official document calls every identifier a "hashed ID" (opaque string)
+    and never states a type prefix. The prefixes recorded above came from the
+    reference examples; treat ids as opaque strings and do not parse the prefix.
 notes: >-
   Entity graph derived from the documented PersistIQ objects and their id-
-  reference fields. Ids are type-prefixed (see conventions).
+  reference fields, then reconciled on 2026-08-13 against the provider's own
+  OpenAPI (see x-round-2). Ids are opaque "hashed IDs"; the type prefixes seen
+  in examples are conventional, not contractual.

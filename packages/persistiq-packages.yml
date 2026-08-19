@@ -1,5 +1,7 @@
-generated: '2026-07-20'
+generated: '2026-08-13'
 method: searched
+official_count: 0
+currency_checked: '2026-08-13'
 source: >-
   npm, PyPI, RubyGems registry search; PersistIQ publishes no first-party SDKs
   in its documentation.
@@ -10,6 +12,8 @@ packages:
     url: https://www.npmjs.com/package/persistiq
     install: npm install persistiq
     version: 1.0.6
+    published: '2015-11-11'
+    version_source: https://registry.npmjs.org/persistiq
     official: false
     author: Luis Correia
     repository: https://github.com/lfceng/persistiq
@@ -20,6 +24,12 @@ packages:
     url: https://pypi.org/project/persistiq/
     install: pip install persistiq
     version: 0.0.2
+    published: null
+    version_source: https://pypi.org/pypi/persistiq/json
+    published_note: >-
+      Checked 2026-08-13: PyPI reports version 0.0.2 but the release carries no
+      files (the `releases["0.0.2"]` array is empty), so there is no upload date
+      and nothing to `pip install`. An honest null, not an unchecked field.
     official: false
     author: Elijah Wilson
     repository: https://github.com/tizz98/persistiq
@@ -30,6 +40,9 @@ packages:
     url: https://rubygems.org/gems/persistiq
     install: gem install persistiq
     version: 1.0.0
+    published: '2015-08-13'
+    version_source: https://rubygems.org/api/v1/gems/persistiq.json
+    published_note: Only one version has ever been published.
     official: false
     author: Jamie Quint
     repository: https://github.com/jamiequint/persistiq
@@ -37,8 +50,32 @@ packages:
       Community Ruby gem on a personal GitHub account (author is a PersistIQ
       co-founder, but the gem is not published under a company org or referenced
       in the official docs), so it is not marked first-party.
+decay:
+  checked: '2026-08-13'
+  newest_release: '2015-11-11'
+  age_years: 10.8
+  finding: >-
+    All three community wrappers are abandoned. The newest release across every
+    registry is the npm package from November 2015 — a decade older than the API
+    it wraps, and predating the tags, replies, campaign-duplicate and
+    webhook-plugin surfaces that exist in PersistIQ's current OpenAPI. Any of
+    them will silently miss roughly a third of the live API. The PyPI package
+    cannot even be installed (empty release). There is no first-party library to
+    fall back to.
+github_org:
+  url: https://github.com/PersistIQ
+  public_repos: 2
+  checked: '2026-08-13'
+  repos:
+    - {name: revux, description: 'Use Redux with Vue.js seamlessly', pushed: '2018-09-17'}
+    - {name: nylas-ruby, description: 'Ruby bindings for the Nylas Platform APIs', pushed: '2024-05-07'}
+  finding: >-
+    Neither repo is a PersistIQ client library — one is a Vue/Redux helper, the
+    other a fork of Nylas' Ruby bindings. The org publishes no SDK, no CLI, no
+    MCP server and no .proto.
 notes: >-
-  Only third-party/community client libraries were found. PersistIQ's own
-  documentation does not advertise an official SDK, so no `SDKs` pointer (which
-  the sdk_count check reads and which requires a first-party library) is emitted.
+  Only third-party/community client libraries were found, all abandoned since
+  2015 (see `decay`). PersistIQ's own documentation does not advertise an
+  official SDK and its GitHub org ships none, so no `SDKs` pointer (which the
+  sdk_count check reads and which requires a first-party library) is emitted.
   Zapier is offered as the official no-code integration path.

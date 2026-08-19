@@ -1,0 +1,416 @@
+{
+  "item": [
+    {
+      "id": "c01b92cd-0de9-40d9-971a-0c228265ec8e",
+      "name": "Events",
+      "description": {
+        "content": "Activity events",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aa3baeb1-102e-4610-8179-23f995ed6b0e",
+          "name": "List events",
+          "request": {
+            "name": "List events",
+            "description": {
+              "content": "Retrieves activity events. Each response contains a maximum of 500 events; when more exist, `has_more` is true and `next_page` holds the next URL.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "group",
+                  "value": "<string>",
+                  "description": "The group of events to return. One of `campaign`, `settings`, or `lead_detail`."
+                },
+                {
+                  "disabled": false,
+                  "key": "campaign",
+                  "value": "<string>",
+                  "description": "Filters events about a specific campaign."
+                },
+                {
+                  "disabled": false,
+                  "key": "lead",
+                  "value": "<string>",
+                  "description": "Filters events about a certain lead."
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "Filters events performed by a certain user."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_at",
+                  "value": "<dateTime>",
+                  "description": "Gets events after the specified time."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_at",
+                  "value": "<dateTime>",
+                  "description": "Gets events before the specified time."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6218595-69c7-46bc-b7fc-b072e799128a",
+              "name": "A page of events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "campaign",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lead",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_at",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_at",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"has_more\": true,\n  \"next_page\": \"string\",\n  \"events\": [\n    {\n      \"id\": \"evt_g3gZjN\",\n      \"kind\": \"lead_created\",\n      \"event_at\": \"2000-02-07T22:41:50.131Z\",\n      \"user_id\": \"string\",\n      \"user\": {\n        \"id\": \"u_q3e537\",\n        \"name\": \"string\",\n        \"email\": \"35LGj-lsHs@LTiRhtZNGhQHKLgMja.cwgt\",\n        \"activated\": false,\n        \"default_mailbox_id\": \"string\",\n        \"salesforce_id\": \"string\"\n      },\n      \"campaign\": {},\n      \"lead\": {},\n      \"params\": {},\n      \"diff\": {}\n    },\n    {\n      \"id\": \"evt_g3gZjN\",\n      \"kind\": \"lead_created\",\n      \"event_at\": \"2016-04-16T15:23:36.173Z\",\n      \"user_id\": \"string\",\n      \"user\": {\n        \"id\": \"u_q3e537\",\n        \"name\": \"string\",\n        \"email\": \"FDW9xLJB7fRVja@FeumAMMbaCMUyHJtMZ.yil\",\n        \"activated\": false,\n        \"default_mailbox_id\": \"string\",\n        \"salesforce_id\": \"string\"\n      },\n      \"campaign\": {},\n      \"lead\": {},\n      \"params\": {},\n      \"diff\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "770fe27f-985a-4b90-96a5-f0ec2d128795",
+              "name": "Unauthorized - your API key is wrong",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "campaign",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lead",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_at",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_at",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ccd12b8f-5647-4cdf-b546-494b4e6b32f6",
+              "name": "Too Many Requests - more than 100 requests were sent in one minute.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "campaign",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lead",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_at",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_at",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum allowed requests per minute.",
+                  "key": "X-RateLimit-Limit",
+                  "value": "7285"
+                },
+                {
+                  "disabled": false,
+                  "description": "Requests left for the current window.",
+                  "key": "X-RateLimit-Remaining",
+                  "value": "7285"
+                },
+                {
+                  "disabled": false,
+                  "description": "UTC epoch seconds when the window resets.",
+                  "key": "X-RateLimit-Reset",
+                  "value": "7285"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea260b3a-0c5b-4b3d-a7f9-70fb5baf9a32",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "campaign",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lead",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_at",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_at",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.persistiq.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d6201ba3-4d9d-464b-8321-09e8e9acb9b2",
+    "name": "PersistIQ Campaigns Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The PersistIQ API is a REST API for the PersistIQ sales engagement platform. It exposes users, leads (prospects), lead statuses and fields, campaigns (including adding and removing leads), activity events, and Do Not Contact (DNC) domains. Authentication is a company-wide API key sent in the `x-api-key` request header. Responses are JSON with a `status`/`errors` envelope, cursor pagination via `has_more` + `next_page`, and a per-key rate limit of 100 requests per minute surfaced through `X-RateLimit-*` headers. This specification was derived faithfully from PersistIQ's published API reference (apidocs.persistiq.com) and captures the documented request and response surface; it is not an official PersistIQ-published OpenAPI file.\n\nContact Support:\n Name: PersistIQ",
+      "type": "text/plain"
+    }
+  }
+}

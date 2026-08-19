@@ -35,9 +35,24 @@ documents:
   - host: https://persistiq.com
     path: /.well-known/ai-plugin.json
     status: 404
+reprobed: '2026-08-13'
+agent_card_probe:
+  - {host: https://api.persistiq.com, path: /.well-known/agent-card.json, status: 404}
+  - {host: https://api.persistiq.com, path: /.well-known/agent.json, status: 404}
+  - {host: https://persistiq.com, path: /.well-known/agent-card.json, status: 404}
+  - {host: https://persistiq.com, path: /.well-known/agent.json, status: 404}
+hits: 0
+pointer_emitted: false
 notes: >-
   No /.well-known/ discovery documents are published on either the API host
   (api.persistiq.com) or the website host (persistiq.com). PersistIQ uses
   company-wide API-key auth (x-api-key), so no OIDC/OAuth discovery is expected;
   no security.txt, api-catalog, or ai-plugin.json is served. Absence recorded as
   a valid negative result.
+
+  Re-probed 2026-08-13, including both A2A agent-card paths: still zero hits. The
+  API host returns a plain-text `nope` body on some paths and a PersistIQ-branded
+  404 page on others — both genuine 404s, no SPA catch-all masking. Because not
+  one path returned a document, the `WellKnown` pointer that a previous round
+  wired into apis.yml has been REMOVED: that pointer asserts the provider serves
+  a well-known surface, and this file records that it does not.

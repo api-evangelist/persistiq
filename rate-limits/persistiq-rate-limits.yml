@@ -21,6 +21,34 @@ over_limit:
   body: >-
     { "error": { "reason": "too_many_requests", "message": "You performed more
     than 100 requests per minute. Limit will be reseted at <epoch>." } }
+observed:
+  method: probed
+  fetched: '2026-08-13'
+  request: GET https://api.persistiq.com/v1/users (no api key)
+  http_status: 401
+  headers:
+    x-ratelimit-limit: '500'
+    x-ratelimit-remaining: '498'
+    x-request-id: present (UUID)
+    x-runtime: present
+    strict-transport-security: max-age=31536000
+  notes: >-
+    Rate-limit headers are returned even on an unauthenticated 401, so an agent
+    can read the live budget before it holds a key. No `x-ratelimit-reset` and
+    no `Retry-After` appeared on this response; the reference documents a reset
+    header, so it is likely emitted only as the window is consumed. Header names
+    are returned lower-cased over HTTP/2.
+discrepancy:
+  documented: 100 requests / 1 minute (https://apidocs.persistiq.com/)
+  observed: 500 (x-ratelimit-limit, 2026-08-13)
+  resolution: unresolved
+  guidance: >-
+    Treat the runtime headers as authoritative and the documented 100/min as the
+    floor. The gap is recorded rather than reconciled — PersistIQ has not
+    restated the limit anywhere machine-readable, and its official OpenAPI does
+    not describe rate limiting at all.
 notes: >-
   A maximum of 100 requests is allowed in any 1-minute window, enforced per API
-  key (i.e. per user). Exceeding the limit returns 429 Too Many Requests.
+  key (i.e. per user), per the published reference. Exceeding the limit returns
+  429 Too Many Requests. A live probe on 2026-08-13 advertised a limit of 500 —
+  see `observed` and `discrepancy` above.

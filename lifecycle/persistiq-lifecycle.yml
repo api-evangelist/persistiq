@@ -1,20 +1,65 @@
-generated: '2026-07-20'
-method: derived
-source: openapi/persistiq-openapi.yml
+generated: '2026-08-13'
+method: searched
+source: https://api.persistiq.com/api-docs/v1/swagger.json
 versioning:
   scheme: uri-path
   current: v1
   docs: https://apidocs.persistiq.com/
+  spec_version: v1 (info.version in PersistIQ's own OpenAPI 3.0.1 document)
+  notes: >-
+    A single version, v1, embedded in the path. No header or date-based
+    versioning, no version negotiation, and no v2 announced anywhere.
 deprecation:
   policy_url: null
   sunset_header: false
-  notes: No deprecation policy or RFC 8594 Sunset/Deprecation header support is documented.
+  notes: >-
+    No deprecation policy and no RFC 8594 Sunset/Deprecation header support is
+    documented, and no operation in the official OpenAPI carries
+    `deprecated: true`.
 sla:
   url: null
   uptime_target: null
-status_page: null
+status_page:
+  url: null
+  registered_subdomain: https://persistiq.statuspage.io/
+  state: inactive
+  method: probed
+  checked: '2026-08-13'
+  notes: >-
+    PersistIQ registered a Statuspage tenant but never activated it. The page
+    title is literally "PersistIQ Status - Page Inactive", and
+    https://persistiq.statuspage.io/api/v2/status.json returns HTTP 401 with
+    "Your page is inactive." No status.persistiq.com CNAME exists (DNS does not
+    resolve). This is a registered-but-dead surface, so NO StatusPage pointer is
+    emitted — an inactive page is an absence, not a presence.
+changelog:
+  url: http://help.persistiq.com/en/collections/27832-what-s-new
+  kind: knowledge-base "What's New" collection
+  last_entry: '2021-10-03'
+  api_changelog: false
+  artifact: changelog/persistiq-changelog.yml
+  notes: >-
+    The only surviving product-update surface. The Canny board that once carried
+    a dated changelog (persistiq.canny.io/changelog) now renders "Company Not
+    Found" behind an HTTP 200 SPA shell.
 deprecated_operations: []
+maturity:
+  signals:
+    - Official OpenAPI is published but unlinked from the API reference, and
+      declares no operationIds.
+    - Public pricing withdrawn (pricing-monthly returns 410 Gone); nav "Pricing"
+      now points at a demo form.
+    - Status page registered but inactive.
+    - Product changelog last updated 2021-10-03.
+    - No first-party SDK; the three community wrappers last shipped 2015.
+    - Company sits under Wishpond (persistiq.com footer links investors to
+      wishpond.com/investors).
+  read: >-
+    The v1 contract is stable and live — it answers, it is specified, and it
+    carries webhooks — but the surrounding developer programme is in maintenance
+    rather than active development.
 notes: >-
-  PersistIQ publishes a single stable v1 API. No status page, SLA, deprecation
-  policy, or dated changelog was found on the public developer surface at the
-  time of this pass.
+  PersistIQ publishes a single stable v1 API. No SLA and no deprecation policy.
+  The status page exists as a registered Statuspage tenant but is inactive, and
+  the product changelog has not been updated since 2021 — both recorded above
+  with the probe evidence rather than asserted as present.

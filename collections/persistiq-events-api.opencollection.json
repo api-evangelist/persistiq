@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PersistIQ Campaigns Events API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.persistiq.com/v1/events",
+            "params": [
+              {
+                "name": "group",
+                "value": "",
+                "type": "query",
+                "description": "The group of events to return. One of `campaign`, `settings`, or `lead_detail`."
+              },
+              {
+                "name": "campaign",
+                "value": "",
+                "type": "query",
+                "description": "Filters events about a specific campaign."
+              },
+              {
+                "name": "lead",
+                "value": "",
+                "type": "query",
+                "description": "Filters events about a certain lead."
+              },
+              {
+                "name": "user",
+                "value": "",
+                "type": "query",
+                "description": "Filters events performed by a certain user."
+              },
+              {
+                "name": "start_at",
+                "value": "",
+                "type": "query",
+                "description": "Gets events after the specified time."
+              },
+              {
+                "name": "end_at",
+                "value": "",
+                "type": "query",
+                "description": "Gets events before the specified time."
+              }
+            ]
+          },
+          "docs": "Retrieves activity events. Each response contains a maximum of 500 events; when more exist, `has_more` is true and `next_page` holds the next URL."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
