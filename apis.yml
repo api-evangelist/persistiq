@@ -45,6 +45,17 @@ tags:
 - CRM
 - Lead Management
 - Marketing
+- Webhook
+- SEP
+tags_raw:
+- Company
+- Sales Engagement
+- Sales
+- Outbound
+- Email Outreach
+- CRM
+- Lead Management
+- Marketing
 - Webhooks
 - Sales Engagement Platform
 apis:
@@ -78,6 +89,8 @@ apis:
   humanURL: https://apidocs.persistiq.com/
   baseURL: https://api.persistiq.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -126,6 +139,8 @@ apis:
   humanURL: https://apidocs.persistiq.com/
   baseURL: https://api.persistiq.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -173,6 +188,9 @@ apis:
   humanURL: https://api.persistiq.com/api-docs
   baseURL: https://api.persistiq.com
   tags:
+  - Webhook
+  - Event
+  tags_raw:
   - Webhooks
   - Events
   properties:
