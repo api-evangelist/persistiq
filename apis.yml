@@ -147,65 +147,84 @@ apis:
     url: openapi/persistiq-users-api-openapi.yml
   - type: APIReference
     url: https://apidocs.persistiq.com/
+- aid: persistiq:persistiq-campaign-leads-api
+  name: PersistIQ Campaign Leads API
+  description: The Campaign Leads API from PersistIQ — 2 operation(s) for campaign leads.
+  humanURL: https://apidocs.persistiq.com/
+  baseURL: https://api.persistiq.com
+  tags:
+  - Campaign Leads
+  properties:
+  - type: OpenAPI
+    url: openapi/persistiq-campaign-leads-api-openapi.yml
+  - type: APIReference
+    url: https://api.persistiq.com/api-docs
+  - type: Webhooks
+    url: asyncapi/persistiq-webhooks.yml
+- aid: persistiq:persistiq-dnc-domains-api
+  name: PersistIQ DNC Domains API
+  description: The DNC Domains API from PersistIQ — 1 operation(s) for dnc domains.
+  humanURL: https://apidocs.persistiq.com/
+  baseURL: https://api.persistiq.com
+  tags:
+  - DNC Domains
+  properties:
+  - type: OpenAPI
+    url: openapi/persistiq-dnc-domains-api-openapi.yml
+  - type: APIReference
+    url: https://api.persistiq.com/api-docs
+  - type: Webhooks
+    url: asyncapi/persistiq-webhooks.yml
+- aid: persistiq:persistiq-replies-api
+  name: PersistIQ Replies API
+  description: The Replies API from PersistIQ — 1 operation(s) for replies.
+  humanURL: https://apidocs.persistiq.com/
+  baseURL: https://api.persistiq.com
+  tags:
+  - Replies
+  properties:
+  - type: OpenAPI
+    url: openapi/persistiq-replies-api-openapi.yml
+  - type: APIReference
+    url: https://api.persistiq.com/api-docs
+  - type: Webhooks
+    url: asyncapi/persistiq-webhooks.yml
 - aid: persistiq:persistiq-tags-api
   name: PersistIQ Tags API
-  description: >-
-    Tags used to organize prospects. Exposed only by PersistIQ's own OpenAPI
-    document; absent from the published API reference.
-  humanURL: https://api.persistiq.com/api-docs
+  description: The Tags API from PersistIQ — 1 operation(s) for tags.
+  humanURL: https://apidocs.persistiq.com/
   baseURL: https://api.persistiq.com
   tags:
   - Tags
   properties:
   - type: OpenAPI
-    url: openapi/persistiq-api-v1-openapi.json
+    url: openapi/persistiq-tags-api-openapi.yml
   - type: APIReference
     url: https://api.persistiq.com/api-docs
-- aid: persistiq:persistiq-replies-api
-  name: PersistIQ Replies API
-  description: >-
-    Campaign inbox replies — list prospect replies with their sentiment, and send
-    a reply back through the connected mailbox. Exposed only by PersistIQ's own
-    OpenAPI document.
-  humanURL: https://api.persistiq.com/api-docs
-  baseURL: https://api.persistiq.com
-  tags:
-  - Replies
-  - Inbox
-  properties:
-  - type: OpenAPI
-    url: openapi/persistiq-api-v1-openapi.json
-  - type: APIReference
-    url: https://api.persistiq.com/api-docs
-  - type: AgentSkill
-    url: skills/persistiq-handle-campaign-replies.md
-- aid: persistiq:persistiq-webhook-plugin-api
-  name: PersistIQ Webhook Plugin API
-  description: >-
-    Per-company webhook configuration — five events (new prospect, updated
-    prospect, raw activity events, email reply, email opened), each with its own
-    enable flag and destination URL.
-  humanURL: https://api.persistiq.com/api-docs
-  baseURL: https://api.persistiq.com
-  tags:
-  - Webhook
-  - Event
-  tags_raw:
-  - Webhooks
-  - Events
-  properties:
-  - type: OpenAPI
-    url: openapi/persistiq-api-v1-openapi.json
   - type: Webhooks
     url: asyncapi/persistiq-webhooks.yml
+- aid: persistiq:persistiq-webhook-plugin-api
+  name: PersistIQ Webhook Plugin API
+  description: The Webhook Plugin API from PersistIQ — 1 operation(s) for webhook plugin.
+  humanURL: https://apidocs.persistiq.com/
+  baseURL: https://api.persistiq.com
+  tags:
+  - Webhook Plugin
+  properties:
+  - type: OpenAPI
+    url: openapi/persistiq-webhook-plugin-api-openapi.yml
   - type: APIReference
     url: https://api.persistiq.com/api-docs
+  - type: Webhooks
+    url: asyncapi/persistiq-webhooks.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgentSkill
+  url: skills/persistiq-handle-campaign-replies.md
 - type: OpenAPI
   name: PersistIQ API V1 (official specification)
   url: openapi/persistiq-api-v1-openapi.json
