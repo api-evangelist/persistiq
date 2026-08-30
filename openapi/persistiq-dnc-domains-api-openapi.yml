@@ -1,0 +1,96 @@
+openapi: 3.2.0
+info:
+  title: PersistIQ API V1 DNC Domains API
+  version: v1
+  description: Public REST API for PersistIQ. Authenticate with your API key in the `x-api-key` header.
+servers:
+- url: https://api.persistiq.com
+  description: Production
+security:
+- api_key: []
+tags:
+- name: DNC Domains
+paths:
+  /v1/dnc_domains:
+    get:
+      summary: List Do-Not-Contact domains
+      tags:
+      - DNC Domains
+      parameters:
+      - name: page
+        in: query
+        required: false
+        description: Page number for pagination
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: DNC domains listed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  has_more:
+                    type: boolean
+                  next_page:
+                    type:
+                    - string
+                    - 'null'
+                  status:
+                    type: string
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                  dnc_domains:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/dnc_domain_type'
+    post:
+      summary: Add a DNC domain
+      tags:
+      - DNC Domains
+      parameters: []
+      responses:
+        '200':
+          description: DNC domain created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  error:
+                    type:
+                    - object
+                    - 'null'
+                  dnc_domain:
+                    $ref: '#/components/schemas/dnc_domain_type'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Domain name to add to DNC list (e.g. "example.com")
+              required:
+              - name
+components:
+  schemas:
+    dnc_domain_type:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: x-api-key
+      in: header
+      description: API key found in Settings > Integrations > API Key
