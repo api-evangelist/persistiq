@@ -1,22 +1,214 @@
-generated: '2026-07-20'
+generated: '2026-09-16'
 method: generated
-source: openapi/persistiq-openapi.yml
+source: openapi/persistiq-campaign-leads-api-openapi.yml, openapi/persistiq-campaigns-api-openapi.yml,
+  openapi/persistiq-dnc-domains-api-openapi.yml, openapi/persistiq-do-not-contact-domains-api-openapi.yml,
+  openapi/persistiq-events-api-openapi.yml, openapi/persistiq-lead-fields-api-openapi.yml, openapi/persistiq-lead-statuses-api-openapi.yml,
+  openapi/persistiq-leads-api-openapi.yml, openapi/persistiq-replies-api-openapi.yml, openapi/persistiq-tags-api-openapi.yml,
+  openapi/persistiq-users-api-openapi.yml, openapi/persistiq-webhook-plugin-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 13
+  operations: 27
   by_action_class:
-    connected: 8
-    acting: 5
+    connected: 14
+    acting: 13
   by_consequence:
-    read: 8
-    write: 5
+    read: 14
+    write: 13
   human_in_the_loop_required: 0
 operations:
-- path: /v1/users
+- path: /v1/campaigns/{campaign_id}/leads
   method: get
-  operationId: listUsers
+  operationId: getV1CampaignsByCampaignIdLeads
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/campaigns/{campaign_id}/leads
+  method: post
+  operationId: postV1CampaignsByCampaignIdLeads
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/campaigns/{campaign_id}/leads/{id}
+  method: delete
+  operationId: deleteV1CampaignsByCampaignIdLeadsById
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/campaigns
+  method: get
+  operationId: getV1Campaigns
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/campaigns
+  method: post
+  operationId: postV1Campaigns
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/campaigns/duplicate
+  method: post
+  operationId: postV1CampaignsDuplicate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/campaigns/{campaign_id}/leads
+  method: post
+  operationId: addLeadsToCampaign
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/campaigns/{campaign_id}/leads/{lead_id}
+  method: delete
+  operationId: removeLeadFromCampaign
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/dnc_domains
+  method: get
+  operationId: getV1DncDomains
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/dnc_domains
+  method: post
+  operationId: postV1DncDomains
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/dnc_domains
+  method: get
+  operationId: listDncDomains
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/dnc_domains
+  method: post
+  operationId: createDncDomain
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/events
+  method: get
+  operationId: getV1Events
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/lead_fields
+  method: get
+  operationId: getV1LeadFields
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/lead_statuses
+  method: get
+  operationId: getV1LeadStatuses
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -26,7 +218,7 @@ operations:
     audit: none
 - path: /v1/leads
   method: get
-  operationId: listLeads
+  operationId: getV1Leads
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -36,7 +228,33 @@ operations:
     audit: none
 - path: /v1/leads
   method: post
-  operationId: createLeads
+  operationId: postV1Leads
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/leads/{id}
+  method: get
+  operationId: getV1LeadsById
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/leads/{id}
+  method: patch
+  operationId: patchV1LeadsById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -76,9 +294,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /v1/lead_statuses
+- path: /v1/campaigns/{campaign_id}/replies
   method: get
-  operationId: listLeadStatuses
+  operationId: getV1CampaignsByCampaignIdReplies
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -86,29 +304,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/lead_fields
-  method: get
-  operationId: listLeadFields
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/campaigns
-  method: get
-  operationId: listCampaigns
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/campaigns/{campaign_id}/leads
+- path: /v1/campaigns/{campaign_id}/replies
   method: post
-  operationId: addLeadsToCampaign
+  operationId: postV1CampaignsByCampaignIdReplies
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -122,25 +320,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /v1/campaigns/{campaign_id}/leads/{lead_id}
-  method: delete
-  operationId: removeLeadFromCampaign
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/events
+- path: /v1/tags
   method: get
-  operationId: listEvents
+  operationId: getV1Tags
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -148,9 +330,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/dnc_domains
+- path: /v1/users
   method: get
-  operationId: listDncDomains
+  operationId: getV1Users
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -158,9 +340,19 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/dnc_domains
-  method: post
-  operationId: createDncDomain
+- path: /v1/webhook_plugin
+  method: get
+  operationId: getV1WebhookPlugin
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/webhook_plugin
+  method: put
+  operationId: putV1WebhookPlugin
   x-agentic-access:
     action-class: acting
     consequence: write
