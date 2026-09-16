@@ -1,18 +1,14 @@
 aid: persistiq
 name: PersistIQ
-description: >-
-  PersistIQ is a sales engagement platform for small teams to find new
-  customers, start conversations, and personalize sales outreach at scale from
-  one place. It combines prospect research (Chrome extension), multi-channel
-  outreach (email, calls, tasks), campaign management with A/B testing,
-  performance analytics, and CRM integrations. PersistIQ exposes a REST API (v1)
-  for users, leads (prospects), lead statuses and fields, tags, campaigns
-  (including duplication and inbox replies), activity events, Do Not Contact
-  domains, and a webhook plugin carrying five events. It is specified by
-  PersistIQ's own OpenAPI 3.0.1 document, served from the API host at
-  /api-docs/v1/swagger.json. Authentication is a single company-wide API key sent
-  in the x-api-key header, with page-number pagination and a documented 100
-  request/minute per-key rate limit.
+description: PersistIQ is a sales engagement platform for small teams to find new customers, start conversations,
+  and personalize sales outreach at scale from one place. It combines prospect research (Chrome extension),
+  multi-channel outreach (email, calls, tasks), campaign management with A/B testing, performance analytics,
+  and CRM integrations. PersistIQ exposes a REST API (v1) for users, leads (prospects), lead statuses
+  and fields, tags, campaigns (including duplication and inbox replies), activity events, Do Not Contact
+  domains, and a webhook plugin carrying five events. It is specified by PersistIQ's own OpenAPI 3.0.1
+  document, served from the API host at /api-docs/v1/swagger.json. Authentication is a single company-wide
+  API key sent in the x-api-key header, with page-number pagination and a documented 100 request/minute
+  per-key rate limit.
 url: https://raw.githubusercontent.com/api-evangelist/persistiq/refs/heads/main/apis.yml
 deliveryModel:
   model: saas
@@ -49,7 +45,7 @@ x-tier: enriched
 x-tier-reason: portfolio-lead
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-08-13'
+modified: '2026-09-16'
 tags:
 - Company
 - Sales Engagement
@@ -241,7 +237,7 @@ common:
   url: skills/persistiq-handle-campaign-replies.md
 - type: OpenAPI
   name: PersistIQ API V1 (official specification)
-  url: openapi/persistiq-api-v1-openapi.json
+  url: openapi/_original/persistiq-api-v1-openapi.json
 - type: Overlay
   url: overlays/persistiq-openapi-overlay.yaml
 - type: Overlay
@@ -275,7 +271,10 @@ common:
   url: data-model/persistiq-data-model.yml
 - type: X-MCPServerCandidate
   url: mcp/persistiq-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+    — a tool list derived from the published API contracts, not an existing server. The scorer already
+    read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+    surfaces with a server that does not exist.'
 - type: Packages
   url: packages/persistiq-packages.yml
 - type: LLMsTxt
@@ -313,13 +312,9 @@ x-enrichment:
   status: enriched
   artifacts_added: 5
   pass: local-v1
-  note: >-
-    Round 2. Located PersistIQ's own OpenAPI 3.0.1 document at
-    https://api.persistiq.com/api-docs/v1/swagger.json — reachable from the
-    Swagger UI on the API host root, and never linked from the published API
-    reference. It adds four surfaces the derived spec did not have (tags,
-    campaign create/duplicate, campaign replies, webhook plugin) and replaced
-    the derived spec as the evidence base for authentication, conformance,
-    errors, data-model and conventions. The WellKnown pointer was REMOVED: every
-    /.well-known/ path 404s on both hosts, so the pointer asserted a surface
-    PersistIQ does not serve.
+  note: 'Round 2. Located PersistIQ''s own OpenAPI 3.0.1 document at https://api.persistiq.com/api-docs/v1/swagger.json
+    — reachable from the Swagger UI on the API host root, and never linked from the published API reference.
+    It adds four surfaces the derived spec did not have (tags, campaign create/duplicate, campaign replies,
+    webhook plugin) and replaced the derived spec as the evidence base for authentication, conformance,
+    errors, data-model and conventions. The WellKnown pointer was REMOVED: every /.well-known/ path 404s
+    on both hosts, so the pointer asserted a surface PersistIQ does not serve.'
