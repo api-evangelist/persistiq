@@ -23,6 +23,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/webhook_plugin_type'
+      operationId: getV1WebhookPlugin
+      x-operation-id-source: derived
     put:
       summary: Update webhook plugin settings
       tags:
@@ -71,6 +73,8 @@ paths:
                 post_email_opened_url:
                   type: string
                   description: Webhook URL for email opened
+      operationId: putV1WebhookPlugin
+      x-operation-id-source: derived
 components:
   schemas:
     webhook_plugin_type:

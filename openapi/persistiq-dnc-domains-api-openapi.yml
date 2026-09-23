@@ -47,6 +47,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/dnc_domain_type'
+      operationId: getV1DncDomains
+      x-operation-id-source: derived
     post:
       summary: Add a DNC domain
       tags:
@@ -79,6 +81,8 @@ paths:
                   description: Domain name to add to DNC list (e.g. "example.com")
               required:
               - name
+      operationId: postV1DncDomains
+      x-operation-id-source: derived
 components:
   schemas:
     dnc_domain_type:

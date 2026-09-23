@@ -1,136 +1,143 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: PersistIQ Campaigns Events API
+  title: Persistiq Events API
   version: v1
-  description: The PersistIQ API is a REST API for the PersistIQ sales engagement platform. It exposes users, leads (prospects), lead statuses and fields, campaigns (including adding and removing leads), activity events, and Do Not Contact (DNC) domains. Authentication is a company-wide API key sent in the `x-api-key` request header. Responses are JSON with a `status`/`errors` envelope, cursor pagination via `has_more` + `next_page`, and a per-key rate limit of 100 requests per minute surfaced through `X-RateLimit-*` headers. This specification was derived faithfully from PersistIQ's published API reference (apidocs.persistiq.com) and captures the documented request and response surface; it is not an official PersistIQ-published OpenAPI file.
-  contact:
-    name: PersistIQ
-    url: https://persistiq.com
-  x-apisjson-generated: '2026-07-20'
-  x-apisjson-method: derived
-  x-apisjson-source: https://apidocs.persistiq.com/
+  x-refined-note:
+  - x-apisjson-generated differs across the merged source definitions and was not carried
+  - x-apisjson-method differs across the merged source definitions and was not carried
+  - x-apisjson-source differs across the merged source definitions and was not carried
+  description: 'Operations tagged Events across 2 of this provider''s published API definitions: persistiq-api-v1-openapi.json, persistiq-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.persistiq.com
   description: Production
-security:
-- ApiKeyAuth: []
 tags:
 - name: Events
-  description: Activity events
 paths:
   /v1/events:
     get:
-      operationId: listEvents
       summary: List events
-      description: Retrieves activity events. Each response contains a maximum of 500 events; when more exist, `has_more` is true and `next_page` holds the next URL.
       tags:
       - Events
       parameters:
+      - name: page
+        in: query
+        required: false
+        description: Page number for pagination
+        schema:
+          type: integer
       - name: group
         in: query
         required: false
-        description: The group of events to return. One of `campaign`, `settings`, or `lead_detail`.
+        description: Filter by event group
         schema:
           type: string
-          enum:
-          - campaign
-          - settings
-          - lead_detail
       - name: campaign
         in: query
         required: false
-        description: Filters events about a specific campaign.
+        description: Filter by campaign hashed ID
         schema:
           type: string
       - name: lead
         in: query
         required: false
-        description: Filters events about a certain lead.
+        description: Filter by lead hashed ID
         schema:
           type: string
       - name: user
         in: query
         required: false
-        description: Filters events performed by a certain user.
+        description: Filter by user hashed ID
         schema:
           type: string
       - name: start_at
         in: query
         required: false
-        description: Gets events after the specified time.
+        description: Filter events after this ISO 8601 timestamp
         schema:
           type: string
-          format: date-time
       - name: end_at
         in: query
         required: false
-        description: Gets events before the specified time.
+        description: Filter events before this ISO 8601 timestamp
         schema:
           type: string
-          format: date-time
       responses:
         '200':
-          description: A page of events
+          description: events listed
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  status:
-                    type: string
-                  errors:
-                    type: array
-                    items: {}
                   has_more:
                     type: boolean
                   next_page:
                     type:
                     - string
                     - 'null'
+                  status:
+                    type: string
+                  errors:
+                    type: array
+                    items:
+                      type: string
                   events:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Event'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/ServerError'
+                      $ref: '#/components/schemas/event_type'
+      security:
+      - api_key: []
+      operationId: getV1Events
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.persistiq.com
+      description: Production
 components:
-  responses:
-    TooManyRequests:
-      description: Too Many Requests - more than 100 requests were sent in one minute.
-      headers:
-        X-RateLimit-Limit:
-          description: Maximum allowed requests per minute.
-          schema:
-            type: integer
-        X-RateLimit-Remaining:
-          description: Requests left for the current window.
-          schema:
-            type: integer
-        X-RateLimit-Reset:
-          description: UTC epoch seconds when the window resets.
-          schema:
-            type: integer
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - your API key is wrong
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    event_type:
+      type: object
+      properties:
+        id:
+          type: string
+        event_type:
+          type: string
+        data:
+          type: object
+          additionalProperties: {}
+        created_at:
+          type: string
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+          example: evt_g3gZjN
+        kind:
+          type: string
+          example: lead_created
+        event_at:
+          type: string
+          format: date-time
+        user_id:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+        campaign:
+          type:
+          - object
+          - 'null'
+        lead:
+          type:
+          - object
+          - 'null'
+        params:
+          type:
+          - object
+          - 'null'
+        diff:
+          type:
+          - object
+          - 'null'
     User:
       type: object
       properties:
@@ -166,41 +173,49 @@ components:
               description: Error type. Values include invalid_request_error, api_error, bad_params, invalid_request, too_many_requests.
             message:
               type: string
-    Event:
-      type: object
-      properties:
-        id:
-          type: string
-          example: evt_g3gZjN
-        kind:
-          type: string
-          example: lead_created
-        event_at:
-          type: string
-          format: date-time
-        user_id:
-          type: string
-        user:
-          $ref: '#/components/schemas/User'
-        campaign:
-          type:
-          - object
-          - 'null'
-        lead:
-          type:
-          - object
-          - 'null'
-        params:
-          type:
-          - object
-          - 'null'
-        diff:
-          type:
-          - object
-          - 'null'
+  responses:
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - your API key is wrong
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    TooManyRequests:
+      description: Too Many Requests - more than 100 requests were sent in one minute.
+      headers:
+        X-RateLimit-Limit:
+          description: Maximum allowed requests per minute.
+          schema:
+            type: integer
+        X-RateLimit-Remaining:
+          description: Requests left for the current window.
+          schema:
+            type: integer
+        X-RateLimit-Reset:
+          description: UTC epoch seconds when the window resets.
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
+    api_key:
+      type: apiKey
+      name: x-api-key
+      in: header
+      description: API key found in Settings > Integrations > API Key
     ApiKeyAuth:
       type: apiKey
       in: header
       name: x-api-key
       description: Company-wide API key. Grants access to read and write all users' data within the company. Include it in the header of every request.
+x-refined-from:
+- persistiq-api-v1-openapi.json
+- persistiq-openapi.yml

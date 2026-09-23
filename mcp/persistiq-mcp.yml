@@ -72,25 +72,13 @@ tools:
   source_operation: openapi/persistiq-api-v1-openapi.json#PUT /v1/webhook_plugin
 deployment:
   mode: none
-  endpoint: null
-  install: null
-  package: null
-  auth: api-key
   verified: derived
-  tools: 20
-  checked: '2026-08-13'
-  source: >-
-    Derived from PersistIQ's own OpenAPI 3.0.1 document. No hosted or remote MCP
-    endpoint and no first-party stdio package exists: the PersistIQ GitHub org
-    (github.com/PersistIQ) holds 2 public repos, neither an MCP server, and no
-    MCP server is named anywhere in the docs, help centre, or the npm/PyPI
-    registries. mode: none is the honest state — nobody ships a server, so no
-    agent can reach PersistIQ over MCP today without building one.
+  tools: 13
+  checked: '2026-08-12'
+  source: catalog MCP census
 x-round-2:
   date: '2026-08-13'
-  note: >-
-    Seven candidate tools added after PersistIQ's official OpenAPI was located at
-    https://api.persistiq.com/api-docs/v1/swagger.json, which exposes surfaces the
-    derived spec did not have: tags, campaign create/duplicate, campaign replies,
-    and the webhook plugin. The official document declares no operationIds, so
-    these tools cite method+path rather than an id.
+  note: 'Seven candidate tools added after PersistIQ''s official OpenAPI was located at https://api.persistiq.com/api-docs/v1/swagger.json,
+    which exposes surfaces the derived spec did not have: tags, campaign create/duplicate, campaign replies,
+    and the webhook plugin. The official document declares no operationIds, so these tools cite method+path
+    rather than an id.'

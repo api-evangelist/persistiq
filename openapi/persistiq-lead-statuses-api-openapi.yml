@@ -1,54 +1,63 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: PersistIQ Campaigns Lead Statuses API
+  title: Persistiq Lead Statuses API
   version: v1
-  description: The PersistIQ API is a REST API for the PersistIQ sales engagement platform. It exposes users, leads (prospects), lead statuses and fields, campaigns (including adding and removing leads), activity events, and Do Not Contact (DNC) domains. Authentication is a company-wide API key sent in the `x-api-key` request header. Responses are JSON with a `status`/`errors` envelope, cursor pagination via `has_more` + `next_page`, and a per-key rate limit of 100 requests per minute surfaced through `X-RateLimit-*` headers. This specification was derived faithfully from PersistIQ's published API reference (apidocs.persistiq.com) and captures the documented request and response surface; it is not an official PersistIQ-published OpenAPI file.
-  contact:
-    name: PersistIQ
-    url: https://persistiq.com
-  x-apisjson-generated: '2026-07-20'
-  x-apisjson-method: derived
-  x-apisjson-source: https://apidocs.persistiq.com/
+  x-refined-note:
+  - x-apisjson-generated differs across the merged source definitions and was not carried
+  - x-apisjson-method differs across the merged source definitions and was not carried
+  - x-apisjson-source differs across the merged source definitions and was not carried
+  description: 'Operations tagged Lead Statuses across 2 of this provider''s published API definitions: persistiq-api-v1-openapi.json, persistiq-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.persistiq.com
   description: Production
-security:
-- ApiKeyAuth: []
 tags:
 - name: Lead Statuses
-  description: Lead status definitions
 paths:
   /v1/lead_statuses:
     get:
-      operationId: listLeadStatuses
-      summary: List all lead statuses
+      summary: List lead statuses
       tags:
       - Lead Statuses
       responses:
         '200':
-          description: Lead statuses for your company
+          description: lead statuses listed
           content:
             application/json:
               schema:
                 type: object
                 properties:
+                  has_more:
+                    type: boolean
+                  next_page:
+                    type:
+                    - string
+                    - 'null'
                   status:
                     type: string
                   errors:
                     type: array
-                    items: {}
+                    items:
+                      type: string
                   lead_statuses:
                     type: array
                     items:
-                      $ref: '#/components/schemas/LeadStatus'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '429':
-          $ref: '#/components/responses/TooManyRequests'
-        '500':
-          $ref: '#/components/responses/ServerError'
+                      $ref: '#/components/schemas/lead_status_type'
+      security:
+      - api_key: []
+      operationId: getV1LeadStatuses
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.persistiq.com
+      description: Production
 components:
   schemas:
+    lead_status_type:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
     LeadStatus:
       type: object
       properties:
@@ -73,6 +82,18 @@ components:
             message:
               type: string
   responses:
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - your API key is wrong
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     TooManyRequests:
       description: Too Many Requests - more than 100 requests were sent in one minute.
       headers:
@@ -92,21 +113,17 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - your API key is wrong
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
+    api_key:
+      type: apiKey
+      name: x-api-key
+      in: header
+      description: API key found in Settings > Integrations > API Key
     ApiKeyAuth:
       type: apiKey
       in: header
       name: x-api-key
       description: Company-wide API key. Grants access to read and write all users' data within the company. Include it in the header of every request.
+x-refined-from:
+- persistiq-api-v1-openapi.json
+- persistiq-openapi.yml

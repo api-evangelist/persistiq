@@ -47,6 +47,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/tag_type'
+      operationId: getV1Tags
+      x-operation-id-source: derived
 components:
   schemas:
     tag_type:

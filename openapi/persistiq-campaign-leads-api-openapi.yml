@@ -53,6 +53,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/campaign_lead_type'
+      operationId: getV1CampaignsByCampaignIdLeads
+      x-operation-id-source: derived
     post:
       summary: Add a lead to a campaign
       tags:
@@ -103,6 +105,8 @@ paths:
                   description: 'Bulk add: array of lead IDs (up to 100)'
                   items:
                     type: string
+      operationId: postV1CampaignsByCampaignIdLeads
+      x-operation-id-source: derived
   /v1/campaigns/{campaign_id}/leads/{id}:
     delete:
       summary: Remove a lead from a campaign
@@ -130,19 +134,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_response'
+      operationId: deleteV1CampaignsByCampaignIdLeadsById
+      x-operation-id-source: derived
 components:
   schemas:
-    campaign_lead_type:
+    error_response:
       type: object
       properties:
-        id:
+        status:
           type: string
-        campaign_id:
-          type: string
-        mailbox_id:
-          type: string
-        lead:
-          $ref: '#/components/schemas/lead_type'
+          example: error
+        error:
+          type: object
+          properties:
+            reason:
+              type: string
+            message:
+              type: string
     lead_type:
       type: object
       properties:
@@ -175,19 +183,17 @@ components:
           type:
           - string
           - 'null'
-    error_response:
+    campaign_lead_type:
       type: object
       properties:
-        status:
+        id:
           type: string
-          example: error
-        error:
-          type: object
-          properties:
-            reason:
-              type: string
-            message:
-              type: string
+        campaign_id:
+          type: string
+        mailbox_id:
+          type: string
+        lead:
+          $ref: '#/components/schemas/lead_type'
   securitySchemes:
     api_key:
       type: apiKey

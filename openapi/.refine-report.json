@@ -1,26 +1,61 @@
 {
   "provider": "persistiq",
   "sources": [
-    "persistiq-campaigns-api-openapi.yml",
-    "persistiq-do-not-contact-domains-api-openapi.yml",
-    "persistiq-events-api-openapi.yml",
-    "persistiq-lead-fields-api-openapi.yml",
-    "persistiq-lead-statuses-api-openapi.yml",
-    "persistiq-leads-api-openapi.yml",
-    "persistiq-users-api-openapi.yml"
+    "_original/persistiq-api-v1-openapi.json",
+    "_original/persistiq-openapi.yml"
   ],
   "outputs": [
+    "persistiq-campaign-leads-api-openapi.yml",
     "persistiq-campaigns-api-openapi.yml",
-    "persistiq-do-not-contact-domains-api-openapi.yml",
+    "persistiq-dnc-domains-api-openapi.yml",
     "persistiq-events-api-openapi.yml",
     "persistiq-lead-fields-api-openapi.yml",
     "persistiq-lead-statuses-api-openapi.yml",
     "persistiq-leads-api-openapi.yml",
-    "persistiq-users-api-openapi.yml"
+    "persistiq-replies-api-openapi.yml",
+    "persistiq-tags-api-openapi.yml",
+    "persistiq-users-api-openapi.yml",
+    "persistiq-webhook-plugin-api-openapi.yml",
+    "persistiq-do-not-contact-domains-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "persistiq-api-v1-openapi.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "persistiq-api-v1-openapi.json: declared missing tag: Campaign Leads",
+    "persistiq-api-v1-openapi.json: declared missing tag: Campaigns",
+    "persistiq-api-v1-openapi.json: declared missing tag: DNC Domains",
+    "persistiq-api-v1-openapi.json: declared missing tag: Events",
+    "persistiq-api-v1-openapi.json: declared missing tag: Lead Fields",
+    "persistiq-api-v1-openapi.json: declared missing tag: Lead Statuses",
+    "persistiq-api-v1-openapi.json: declared missing tag: Leads",
+    "persistiq-api-v1-openapi.json: declared missing tag: Replies",
+    "persistiq-api-v1-openapi.json: declared missing tag: Tags",
+    "persistiq-api-v1-openapi.json: declared missing tag: Users",
+    "persistiq-api-v1-openapi.json: declared missing tag: Webhook Plugin",
+    "persistiq-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "tag 'Campaigns' spans 2 source specs (persistiq-api-v1-openapi.json, persistiq-openapi.yml): per-path servers applied",
+    "tag 'Events' spans 2 source specs (persistiq-api-v1-openapi.json, persistiq-openapi.yml): per-path servers applied",
+    "tag 'Lead Fields' spans 2 source specs (persistiq-api-v1-openapi.json, persistiq-openapi.yml): per-path servers applied",
+    "tag 'Lead Statuses' spans 2 source specs (persistiq-api-v1-openapi.json, persistiq-openapi.yml): per-path servers applied",
+    "tag 'Leads' spans 2 source specs (persistiq-api-v1-openapi.json, persistiq-openapi.yml): per-path servers applied",
+    "tag 'Users' spans 2 source specs (persistiq-api-v1-openapi.json, persistiq-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "persistiq-campaign-leads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "persistiq-campaigns-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "persistiq-dnc-domains-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "persistiq-do-not-contact-domains-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "persistiq-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "persistiq-lead-fields-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "persistiq-lead-statuses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "persistiq-leads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "persistiq-replies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "persistiq-tags-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "persistiq-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "persistiq-webhook-plugin-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
