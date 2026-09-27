@@ -60,18 +60,6 @@ components:
           type: string
         label:
           type: string
-    LeadField:
-      type: object
-      properties:
-        id:
-          type: string
-          example: lcf_3kJ5MN
-        name:
-          type: string
-          example: email
-        label:
-          type: string
-          example: email
     Error:
       type: object
       properties:
@@ -86,19 +74,19 @@ components:
               description: Error type. Values include invalid_request_error, api_error, bad_params, invalid_request, too_many_requests.
             message:
               type: string
+    LeadField:
+      type: object
+      properties:
+        id:
+          type: string
+          example: lcf_3kJ5MN
+        name:
+          type: string
+          example: email
+        label:
+          type: string
+          example: email
   responses:
-    ServerError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - your API key is wrong
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     TooManyRequests:
       description: Too Many Requests - more than 100 requests were sent in one minute.
       headers:
@@ -114,6 +102,18 @@ components:
           description: UTC epoch seconds when the window resets.
           schema:
             type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - your API key is wrong
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Internal Server Error
       content:
         application/json:
           schema:

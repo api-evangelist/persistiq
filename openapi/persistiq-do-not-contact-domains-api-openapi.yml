@@ -99,24 +99,6 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   responses:
-    BadRequest:
-      description: Bad Request - missing a required parameter
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - your API key is wrong
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     TooManyRequests:
       description: Too Many Requests - more than 100 requests were sent in one minute.
       headers:
@@ -132,6 +114,24 @@ components:
           description: UTC epoch seconds when the window resets.
           schema:
             type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized - your API key is wrong
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad Request - missing a required parameter
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Internal Server Error
       content:
         application/json:
           schema:
