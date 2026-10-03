@@ -99,6 +99,18 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   responses:
+    BadRequest:
+      description: Bad Request - missing a required parameter
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     TooManyRequests:
       description: Too Many Requests - more than 100 requests were sent in one minute.
       headers:
@@ -124,28 +136,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad Request - missing a required parameter
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Internal Server Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    DncDomain:
-      type: object
-      properties:
-        id:
-          type: string
-          example: dom_3eWoGj
-        name:
-          type: string
-          example: example.com
     Error:
       type: object
       properties:
@@ -160,6 +151,15 @@ components:
               description: Error type. Values include invalid_request_error, api_error, bad_params, invalid_request, too_many_requests.
             message:
               type: string
+    DncDomain:
+      type: object
+      properties:
+        id:
+          type: string
+          example: dom_3eWoGj
+        name:
+          type: string
+          example: example.com
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -106,38 +106,6 @@ components:
           additionalProperties: {}
         created_at:
           type: string
-    Event:
-      type: object
-      properties:
-        id:
-          type: string
-          example: evt_g3gZjN
-        kind:
-          type: string
-          example: lead_created
-        event_at:
-          type: string
-          format: date-time
-        user_id:
-          type: string
-        user:
-          $ref: '#/components/schemas/User'
-        campaign:
-          type:
-          - object
-          - 'null'
-        lead:
-          type:
-          - object
-          - 'null'
-        params:
-          type:
-          - object
-          - 'null'
-        diff:
-          type:
-          - object
-          - 'null'
     User:
       type: object
       properties:
@@ -173,7 +141,45 @@ components:
               description: Error type. Values include invalid_request_error, api_error, bad_params, invalid_request, too_many_requests.
             message:
               type: string
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+          example: evt_g3gZjN
+        kind:
+          type: string
+          example: lead_created
+        event_at:
+          type: string
+          format: date-time
+        user_id:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+        campaign:
+          type:
+          - object
+          - 'null'
+        lead:
+          type:
+          - object
+          - 'null'
+        params:
+          type:
+          - object
+          - 'null'
+        diff:
+          type:
+          - object
+          - 'null'
   responses:
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     TooManyRequests:
       description: Too Many Requests - more than 100 requests were sent in one minute.
       headers:
@@ -195,12 +201,6 @@ components:
             $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Unauthorized - your API key is wrong
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Internal Server Error
       content:
         application/json:
           schema:

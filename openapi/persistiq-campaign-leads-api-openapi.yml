@@ -138,6 +138,30 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    campaign_lead_type:
+      type: object
+      properties:
+        id:
+          type: string
+        campaign_id:
+          type: string
+        mailbox_id:
+          type: string
+        lead:
+          $ref: '#/components/schemas/lead_type'
+    error_response:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        error:
+          type: object
+          properties:
+            reason:
+              type: string
+            message:
+              type: string
     lead_type:
       type: object
       properties:
@@ -170,30 +194,6 @@ components:
           type:
           - string
           - 'null'
-    error_response:
-      type: object
-      properties:
-        status:
-          type: string
-          example: error
-        error:
-          type: object
-          properties:
-            reason:
-              type: string
-            message:
-              type: string
-    campaign_lead_type:
-      type: object
-      properties:
-        id:
-          type: string
-        campaign_id:
-          type: string
-        mailbox_id:
-          type: string
-        lead:
-          $ref: '#/components/schemas/lead_type'
   securitySchemes:
     api_key:
       type: apiKey

@@ -382,35 +382,6 @@ components:
               type: string
             message:
               type: string
-    Lead:
-      type: object
-      properties:
-        id:
-          type: string
-          example: l_abc001
-        status:
-          type: string
-          example: active
-        bounced:
-          type:
-          - boolean
-          - string
-        data:
-          $ref: '#/components/schemas/LeadData'
-    Error:
-      type: object
-      properties:
-        status:
-          type: string
-          example: error
-        error:
-          type: object
-          properties:
-            reason:
-              type: string
-              description: Error type. Values include invalid_request_error, api_error, bad_params, invalid_request, too_many_requests.
-            message:
-              type: string
     LeadData:
       type: object
       required:
@@ -471,7 +442,48 @@ components:
           type:
           - string
           - 'null'
+    Lead:
+      type: object
+      properties:
+        id:
+          type: string
+          example: l_abc001
+        status:
+          type: string
+          example: active
+        bounced:
+          type:
+          - boolean
+          - string
+        data:
+          $ref: '#/components/schemas/LeadData'
+    Error:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        error:
+          type: object
+          properties:
+            reason:
+              type: string
+              description: Error type. Values include invalid_request_error, api_error, bad_params, invalid_request, too_many_requests.
+            message:
+              type: string
   responses:
+    BadRequest:
+      description: Bad Request - missing a required parameter
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     TooManyRequests:
       description: Too Many Requests - more than 100 requests were sent in one minute.
       headers:
@@ -491,26 +503,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - your API key is wrong
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad Request - missing a required parameter
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Not Found - the specified data could not be found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Internal Server Error
+    Unauthorized:
+      description: Unauthorized - your API key is wrong
       content:
         application/json:
           schema:
