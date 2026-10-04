@@ -233,6 +233,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/persistiq-capability-edges.yml
+  name: PersistIQ Business Capability Map
 - type: AgentSkill
   url: skills/persistiq-handle-campaign-replies.md
 - type: OpenAPI
