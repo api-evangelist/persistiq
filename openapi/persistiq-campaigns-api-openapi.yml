@@ -300,6 +300,41 @@ components:
               type: integer
             total_prospects:
               type: integer
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: u_q3e537
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        activated:
+          type: boolean
+        default_mailbox_id:
+          type:
+          - string
+          - 'null'
+        salesforce_id:
+          type:
+          - string
+          - 'null'
+    Error:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        error:
+          type: object
+          properties:
+            reason:
+              type: string
+              description: Error type. Values include invalid_request_error, api_error, bad_params, invalid_request, too_many_requests.
+            message:
+              type: string
     LeadData:
       type: object
       required:
@@ -375,27 +410,6 @@ components:
           - string
         data:
           $ref: '#/components/schemas/LeadData'
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-          example: u_q3e537
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        activated:
-          type: boolean
-        default_mailbox_id:
-          type:
-          - string
-          - 'null'
-        salesforce_id:
-          type:
-          - string
-          - 'null'
     CampaignLead:
       type: object
       properties:
@@ -408,20 +422,6 @@ components:
           type: string
         lead:
           $ref: '#/components/schemas/Lead'
-    Error:
-      type: object
-      properties:
-        status:
-          type: string
-          example: error
-        error:
-          type: object
-          properties:
-            reason:
-              type: string
-              description: Error type. Values include invalid_request_error, api_error, bad_params, invalid_request, too_many_requests.
-            message:
-              type: string
     Campaign:
       type: object
       properties:
@@ -448,20 +448,8 @@ components:
             prospects_optedout:
               type: integer
   responses:
-    BadRequest:
-      description: Bad Request - missing a required parameter
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Not Found - the specified data could not be found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Internal Server Error
       content:
         application/json:
           schema:
@@ -481,6 +469,18 @@ components:
           description: UTC epoch seconds when the window resets.
           schema:
             type: integer
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad Request - missing a required parameter
       content:
         application/json:
           schema:

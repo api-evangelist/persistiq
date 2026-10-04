@@ -140,6 +140,19 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    error_response:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        error:
+          type: object
+          properties:
+            reason:
+              type: string
+            message:
+              type: string
     reply_type:
       type: object
       properties:
@@ -191,19 +204,6 @@ components:
           type:
           - string
           - 'null'
-    error_response:
-      type: object
-      properties:
-        status:
-          type: string
-          example: error
-        error:
-          type: object
-          properties:
-            reason:
-              type: string
-            message:
-              type: string
   securitySchemes:
     api_key:
       type: apiKey

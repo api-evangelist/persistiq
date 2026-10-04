@@ -337,6 +337,19 @@ paths:
       description: Production
 components:
   schemas:
+    error_response:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        error:
+          type: object
+          properties:
+            reason:
+              type: string
+            message:
+              type: string
     lead_type:
       type: object
       properties:
@@ -369,7 +382,7 @@ components:
           type:
           - string
           - 'null'
-    error_response:
+    Error:
       type: object
       properties:
         status:
@@ -380,6 +393,7 @@ components:
           properties:
             reason:
               type: string
+              description: Error type. Values include invalid_request_error, api_error, bad_params, invalid_request, too_many_requests.
             message:
               type: string
     LeadData:
@@ -457,29 +471,9 @@ components:
           - string
         data:
           $ref: '#/components/schemas/LeadData'
-    Error:
-      type: object
-      properties:
-        status:
-          type: string
-          example: error
-        error:
-          type: object
-          properties:
-            reason:
-              type: string
-              description: Error type. Values include invalid_request_error, api_error, bad_params, invalid_request, too_many_requests.
-            message:
-              type: string
   responses:
-    BadRequest:
-      description: Bad Request - missing a required parameter
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Internal Server Error
+    NotFound:
+      description: Not Found - the specified data could not be found
       content:
         application/json:
           schema:
@@ -503,8 +497,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Not Found - the specified data could not be found
+    ServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad Request - missing a required parameter
       content:
         application/json:
           schema:
