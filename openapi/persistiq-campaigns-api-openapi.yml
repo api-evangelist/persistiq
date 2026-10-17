@@ -300,41 +300,6 @@ components:
               type: integer
             total_prospects:
               type: integer
-    User:
-      type: object
-      properties:
-        id:
-          type: string
-          example: u_q3e537
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        activated:
-          type: boolean
-        default_mailbox_id:
-          type:
-          - string
-          - 'null'
-        salesforce_id:
-          type:
-          - string
-          - 'null'
-    Error:
-      type: object
-      properties:
-        status:
-          type: string
-          example: error
-        error:
-          type: object
-          properties:
-            reason:
-              type: string
-              description: Error type. Values include invalid_request_error, api_error, bad_params, invalid_request, too_many_requests.
-            message:
-              type: string
     LeadData:
       type: object
       required:
@@ -395,6 +360,39 @@ components:
           type:
           - string
           - 'null'
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: u_q3e537
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        activated:
+          type: boolean
+        default_mailbox_id:
+          type:
+          - string
+          - 'null'
+        salesforce_id:
+          type:
+          - string
+          - 'null'
+    CampaignLead:
+      type: object
+      properties:
+        id:
+          type: string
+          example: cl_abc001
+        campaign_id:
+          type: string
+        mailbox_id:
+          type: string
+        lead:
+          $ref: '#/components/schemas/Lead'
     Lead:
       type: object
       properties:
@@ -410,18 +408,6 @@ components:
           - string
         data:
           $ref: '#/components/schemas/LeadData'
-    CampaignLead:
-      type: object
-      properties:
-        id:
-          type: string
-          example: cl_abc001
-        campaign_id:
-          type: string
-        mailbox_id:
-          type: string
-        lead:
-          $ref: '#/components/schemas/Lead'
     Campaign:
       type: object
       properties:
@@ -447,9 +433,23 @@ components:
               type: integer
             prospects_optedout:
               type: integer
+    Error:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        error:
+          type: object
+          properties:
+            reason:
+              type: string
+              description: Error type. Values include invalid_request_error, api_error, bad_params, invalid_request, too_many_requests.
+            message:
+              type: string
   responses:
-    NotFound:
-      description: Not Found - the specified data could not be found
+    Unauthorized:
+      description: Unauthorized - your API key is wrong
       content:
         application/json:
           schema:
@@ -473,8 +473,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Internal Server Error
+    NotFound:
+      description: Not Found - the specified data could not be found
       content:
         application/json:
           schema:
@@ -485,8 +485,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized - your API key is wrong
+    ServerError:
+      description: Internal Server Error
       content:
         application/json:
           schema:

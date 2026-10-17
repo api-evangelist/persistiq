@@ -58,6 +58,15 @@ components:
           type: string
         name:
           type: string
+    LeadStatus:
+      type: object
+      properties:
+        id:
+          type: string
+          example: lss_3kJ5MN
+        name:
+          type: string
+          example: engaged
     Error:
       type: object
       properties:
@@ -72,15 +81,6 @@ components:
               description: Error type. Values include invalid_request_error, api_error, bad_params, invalid_request, too_many_requests.
             message:
               type: string
-    LeadStatus:
-      type: object
-      properties:
-        id:
-          type: string
-          example: lss_3kJ5MN
-        name:
-          type: string
-          example: engaged
   responses:
     Unauthorized:
       description: Unauthorized - your API key is wrong

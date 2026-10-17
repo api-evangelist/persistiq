@@ -151,6 +151,17 @@ components:
               type: string
             message:
               type: string
+    campaign_lead_type:
+      type: object
+      properties:
+        id:
+          type: string
+        campaign_id:
+          type: string
+        mailbox_id:
+          type: string
+        lead:
+          $ref: '#/components/schemas/lead_type'
     lead_type:
       type: object
       properties:
@@ -183,17 +194,6 @@ components:
           type:
           - string
           - 'null'
-    campaign_lead_type:
-      type: object
-      properties:
-        id:
-          type: string
-        campaign_id:
-          type: string
-        mailbox_id:
-          type: string
-        lead:
-          $ref: '#/components/schemas/lead_type'
   securitySchemes:
     api_key:
       type: apiKey
