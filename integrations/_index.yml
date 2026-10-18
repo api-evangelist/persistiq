@@ -533,7 +533,7 @@
     - alpha
     in_cloud: true
     builder: unknown (community connector; contributor not in the record)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: persistiq-meltano
   label: Meltano
@@ -565,5 +565,5 @@
     - bronze
     - unknown
     builder: 'community (Meltano Hub variant maintainers: airbyte, nickleomartin)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
