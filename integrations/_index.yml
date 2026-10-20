@@ -15,6 +15,7 @@
   evidence: https://zapier.com/apps/hubspot/integrations/persistiq/17145/create-persistiq-prospects-for-new-hubspot-contacts
   template: https://zapier.com/apps/hubspot/integrations/persistiq/17145/create-persistiq-prospects-for-new-hubspot-contacts
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: persistiq-add-new-hubspot-prospects-to-persistiq-campaigns
@@ -29,6 +30,7 @@
   evidence: https://zapier.com/apps/hubspot/integrations/persistiq/17146/add-new-hubspot-prospects-to-persistiq-campaigns
   template: https://zapier.com/apps/hubspot/integrations/persistiq/17146/add-new-hubspot-prospects-to-persistiq-campaigns
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: persistiq-create-persistiq-prospects-for-new-copper-persons
@@ -43,6 +45,7 @@
   evidence: https://zapier.com/apps/copper/integrations/persistiq/17151/create-persistiq-prospects-for-new-copper-persons
   template: https://zapier.com/apps/copper/integrations/persistiq/17151/create-persistiq-prospects-for-new-copper-persons
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: persistiq-add-newly-updated-copper-leads-to-persistiq-campaigns
@@ -57,6 +60,7 @@
   evidence: https://zapier.com/apps/copper/integrations/persistiq/17152/add-newly-updated-copper-leads-to-persistiq-campaigns
   template: https://zapier.com/apps/copper/integrations/persistiq/17152/add-newly-updated-copper-leads-to-persistiq-campaigns
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: persistiq-add-companies-to-persistiq-do-not-contact-lists-with-new-copper-opportunity-stag
@@ -71,6 +75,7 @@
   evidence: https://zapier.com/apps/copper/integrations/persistiq/17153/add-companies-to-persistiq-do-not-contact-lists-with-new-copper-opportunity-stage-changes
   template: https://zapier.com/apps/copper/integrations/persistiq/17153/add-companies-to-persistiq-do-not-contact-lists-with-new-copper-opportunity-stage-changes
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: persistiq-add-recently-created-or-updated-hubspot-contacts-to-persistiq
@@ -85,6 +90,7 @@
   evidence: https://zapier.com/apps/hubspot/integrations/persistiq/1133260/add-recently-created-or-updated-hubspot-contacts-to-persistiq
   template: https://zapier.com/apps/hubspot/integrations/persistiq/1133260/add-recently-created-or-updated-hubspot-contacts-to-persistiq
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: persistiq-create-prospects-in-persistiq-from-new-contacts-in-hubspot
@@ -99,6 +105,7 @@
   evidence: https://zapier.com/apps/hubspot/integrations/persistiq/1284978/create-prospects-in-persistiq-from-new-contacts-in-hubspot
   template: https://zapier.com/apps/hubspot/integrations/persistiq/1284978/create-prospects-in-persistiq-from-new-contacts-in-hubspot
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: persistiq-create-or-update-persistiq-prospects-from-new-hubspot-contacts
@@ -113,333 +120,7 @@
   evidence: https://zapier.com/apps/hubspot/integrations/persistiq/1314558/create-or-update-persistiq-prospects-from-new-hubspot-contacts
   template: https://zapier.com/apps/hubspot/integrations/persistiq/1314558/create-or-update-persistiq-prospects-from-new-hubspot-contacts
   source: template
-  status: pending-generation
-  arazzo: null
-- slug: persistiq-postgresql
-  label: PostgreSQL
-  partner: postgresql
-  partner_name: PostgreSQL
-  category: Databases
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/postgresql
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: persistiq-wishpond
-  label: Wishpond
-  partner_name: Wishpond
-  category: Website Builders
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/wishpond
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: persistiq-hunter
-  label: Hunter
-  partner: hunter
-  partner_name: Hunter
-  category: Contact Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/hunter
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: persistiq-getprospect
-  label: GetProspect
-  partner_name: GetProspect
-  category: Contact Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/getprospect
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: persistiq-calendly
-  label: Calendly
-  partner: calendly
-  partner_name: Calendly
-  category: Scheduling & Booking
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/calendly
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: persistiq-google-sheets
-  label: Google Sheets
-  partner: google-sheets
-  partner_name: Google Sheets
-  category: Google
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/google-sheets
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: persistiq-kommo
-  label: Kommo
-  partner_name: Kommo
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/kommo
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: persistiq-instapage
-  label: Instapage
-  partner: instapage
-  partner_name: Instapage
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/instapage
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: persistiq-notion
-  label: Notion
-  partner: notion
-  partner_name: Notion
-  category: Task Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/notion
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: persistiq-capsule-crm
-  label: Capsule CRM
-  partner_name: Capsule CRM
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/capsulecrm
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: persistiq-activecampaign
-  label: ActiveCampaign
-  partner: activecampaign
-  partner_name: ActiveCampaign
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/activecampaign
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: persistiq-docsend
-  label: DocSend
-  partner: docsend
-  partner_name: DocSend
-  category: Ads & Conversion
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/docsend
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: persistiq-umso
-  label: Umso
-  partner_name: Umso
-  category: Website Builders
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/umso
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: persistiq-clio
-  label: Clio
-  partner: clio
-  partner_name: Clio
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/clio
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: persistiq-microsoft-dynamics-365-crm
-  label: Microsoft Dynamics 365 CRM
-  partner_name: Microsoft Dynamics 365 CRM
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/microsoft-dynamics-crm
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: persistiq-quickbooks-online
-  label: QuickBooks Online
-  partner_name: QuickBooks Online
-  category: Accounting
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/quickbooks
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: persistiq-keap
-  label: Keap
-  partner: keap
-  partner_name: Keap
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/keap
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: persistiq-attio
-  label: Attio
-  partner: attio
-  partner_name: Attio
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/attio
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: persistiq-ninja-forms
-  label: Ninja Forms
-  partner_name: Ninja Forms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/ninjaforms
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: persistiq-17hats
-  label: 17hats
-  partner: 17hats
-  partner_name: 17hats
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/17hats
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: persistiq-slack
-  label: Slack
-  partner: slack
-  partner_name: Slack
-  category: Team Chat
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/slack
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: persistiq-salespype
-  label: Salespype
-  partner_name: Salespype
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/salespype-crm
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: persistiq-trello
-  label: Trello
-  partner: trello
-  partner_name: Trello
-  category: Project Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/trello
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: persistiq-shopify
-  label: Shopify
-  partner: shopify
-  partner_name: Shopify
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/shopify
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: persistiq-woocommerce
-  label: WooCommerce
-  partner: woocommerce
-  partner_name: WooCommerce
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/woocommerce
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: persistiq-eventbrite
-  label: Eventbrite
-  partner: eventbrite
-  partner_name: Eventbrite
-  category: Event Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/eventbrite
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: persistiq-cognito-forms
-  label: Cognito Forms
-  partner: cognito-forms
-  partner_name: Cognito Forms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/cognito-forms
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: persistiq-ringcentral
-  label: RingCentral
-  partner: ringcentral
-  partner_name: RingCentral
-  category: Phone & SMS
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/ringcentral
-  source: edge
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: persistiq-twilio-segment
@@ -566,4 +247,362 @@
     sources: true
     builder: Pipedream repo (component)
   status: not-a-workflow
+  arazzo: null
+- slug: persistiq-postgresql
+  label: PostgreSQL
+  partner: postgresql
+  partner_name: PostgreSQL
+  category: Databases
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/postgresql
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: persistiq-wishpond
+  label: Wishpond
+  partner_name: Wishpond
+  category: Website Builders
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/wishpond
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: persistiq-hunter
+  label: Hunter
+  partner: hunter
+  partner_name: Hunter
+  category: Contact Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/hunter
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: persistiq-getprospect
+  label: GetProspect
+  partner_name: GetProspect
+  category: Contact Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/getprospect
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: persistiq-calendly
+  label: Calendly
+  partner: calendly
+  partner_name: Calendly
+  category: Scheduling & Booking
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/calendly
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: persistiq-google-sheets
+  label: Google Sheets
+  partner: google-sheets
+  partner_name: Google Sheets
+  category: Google
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/google-sheets
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: persistiq-kommo
+  label: Kommo
+  partner_name: Kommo
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/kommo
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: persistiq-instapage
+  label: Instapage
+  partner: instapage
+  partner_name: Instapage
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/instapage
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: persistiq-notion
+  label: Notion
+  partner: notion
+  partner_name: Notion
+  category: Task Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/notion
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: persistiq-capsule-crm
+  label: Capsule CRM
+  partner: capsule-crm
+  partner_name: Capsule CRM
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/capsulecrm
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: persistiq-activecampaign
+  label: ActiveCampaign
+  partner: activecampaign
+  partner_name: ActiveCampaign
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/activecampaign
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: persistiq-docsend
+  label: DocSend
+  partner: docsend
+  partner_name: DocSend
+  category: Ads & Conversion
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/docsend
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: persistiq-umso
+  label: Umso
+  partner_name: Umso
+  category: Website Builders
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/umso
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: persistiq-clio
+  label: Clio
+  partner: clio
+  partner_name: Clio
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/clio
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: persistiq-microsoft-dynamics-365-crm
+  label: Microsoft Dynamics 365 CRM
+  partner: microsoft-dynamics-365
+  partner_name: Microsoft Dynamics 365 CRM
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/microsoft-dynamics-crm
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: persistiq-quickbooks-online
+  label: QuickBooks Online
+  partner: quickbooks
+  partner_name: QuickBooks Online
+  category: Accounting
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/quickbooks
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: persistiq-keap
+  label: Keap
+  partner: keap
+  partner_name: Keap
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/keap
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: persistiq-attio
+  label: Attio
+  partner: attio
+  partner_name: Attio
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/attio
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: persistiq-ninja-forms
+  label: Ninja Forms
+  partner_name: Ninja Forms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/ninjaforms
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: persistiq-17hats
+  label: 17hats
+  partner: 17hats
+  partner_name: 17hats
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/17hats
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: persistiq-slack
+  label: Slack
+  partner: slack
+  partner_name: Slack
+  category: Team Chat
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/slack
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: persistiq-salespype
+  label: Salespype
+  partner_name: Salespype
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/salespype-crm
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: persistiq-trello
+  label: Trello
+  partner: trello
+  partner_name: Trello
+  category: Project Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/trello
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: persistiq-shopify
+  label: Shopify
+  partner: shopify
+  partner_name: Shopify
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/shopify
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: persistiq-woocommerce
+  label: WooCommerce
+  partner: woocommerce
+  partner_name: WooCommerce
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/woocommerce
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: persistiq-eventbrite
+  label: Eventbrite
+  partner: eventbrite
+  partner_name: Eventbrite
+  category: Event Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/eventbrite
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: persistiq-cognito-forms
+  label: Cognito Forms
+  partner: cognito-forms
+  partner_name: Cognito Forms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/cognito-forms
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: persistiq-ringcentral
+  label: RingCentral
+  partner: ringcentral
+  partner_name: RingCentral
+  category: Phone & SMS
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/persistiq/integrations/ringcentral
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
   arazzo: null

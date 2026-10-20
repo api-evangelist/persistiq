@@ -1,4 +1,4 @@
-generated: '2026-10-12'
+generated: '2026-10-20'
 method: searched
 source:
 - https://zapier.com/apps/persistiq/integrations
@@ -63,336 +63,6 @@ marketplace_apps:
   - key: PERSISTIQ_UPDATE_LEAD
   - key: PERSISTIQ_VIEW_LEAD
 edges:
-- partner_name: HubSpot
-  partner: hubspot
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/hubspot
-  direction: third-party
-  category: Marketing Automation
-  partner_url: http://www.hubspot.com/
-- partner_name: PostgreSQL
-  partner: postgresql
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/postgresql
-  direction: third-party
-  category: Databases
-  partner_url: http://www.postgresql.org/
-- partner_name: Copper
-  partner: copper
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/copper
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://copper.com/?utm_source=zapier&utm_medium=zapier
-- partner_name: Wishpond
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/wishpond
-  direction: third-party
-  category: Website Builders
-  partner_url: http://www.wishpond.com/
-- partner_name: Hunter
-  partner: hunter
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/hunter
-  direction: third-party
-  category: Contact Management
-  partner_url: https://hunter.io/
-- partner_name: GetProspect
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/getprospect
-  direction: third-party
-  category: Contact Management
-  partner_url: https://getprospect.com/
-- partner_name: Calendly
-  partner: calendly
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/calendly
-  direction: third-party
-  category: Scheduling & Booking
-  partner_url: https://calendly.com/?utm_medium=partner&utm_source=zapier&utm_campaign=main_partner_page&utm_content=main_inbound_link
-- partner_name: Google Sheets
-  partner: google-sheets
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/google-sheets
-  direction: third-party
-  category: Google
-  partner_url: http://sheets.google.com/
-- partner_name: Kommo
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/kommo
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://www.kommo.com/integrations/zapier/?utm_source=&utm_campaign=integration&utm_medium=referral&utm_content=zapier
-- partner_name: Instapage
-  partner: instapage
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/instapage
-  direction: third-party
-  category: Forms & Surveys
-  partner_url: https://instapage.com/
-- partner_name: Notion
-  partner: notion
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/notion
-  direction: third-party
-  category: Task Management
-  partner_url: https://www.notion.so/
-- partner_name: Capsule CRM
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/capsulecrm
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://capsulecrm.com/
-- partner_name: ActiveCampaign
-  partner: activecampaign
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/activecampaign
-  direction: third-party
-  category: Marketing Automation
-  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
-- partner_name: DocSend
-  partner: docsend
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/docsend
-  direction: third-party
-  category: Ads & Conversion
-  partner_url: https://www.docsend.com/
-- partner_name: Umso
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/umso
-  direction: third-party
-  category: Website Builders
-  partner_url: https://www.landen.co/
-- partner_name: Clio
-  partner: clio
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/clio
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: http://www.goclio.com/
-- partner_name: Microsoft Dynamics 365 CRM
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/microsoft-dynamics-crm
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://dynamics.microsoft.com/
-- partner_name: QuickBooks Online
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/quickbooks
-  direction: third-party
-  category: Accounting
-  partner_url: http://intuit.com/
-- partner_name: Keap
-  partner: keap
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/keap
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://keap.com/
-- partner_name: Attio
-  partner: attio
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/attio
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://attio.com/
-- partner_name: Ninja Forms
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/ninjaforms
-  direction: third-party
-  category: Forms & Surveys
-  partner_url: http://ninjaforms.com/extensions/zapier/
-- partner_name: 17hats
-  partner: 17hats
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/17hats
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://www.17hats.com/
-- partner_name: Slack
-  partner: slack
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/slack
-  direction: third-party
-  category: Team Chat
-  partner_url: https://slack.com/
-- partner_name: Salespype
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/salespype-crm
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://salespype.com/
-- partner_name: Trello
-  partner: trello
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/trello
-  direction: third-party
-  category: Project Management
-  partner_url: https://trello.com/
-- partner_name: Shopify
-  partner: shopify
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/shopify
-  direction: third-party
-  category: eCommerce
-  partner_url: https://www.shopify.com/
-- partner_name: WooCommerce
-  partner: woocommerce
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/woocommerce
-  direction: third-party
-  category: eCommerce
-  partner_url: https://woocommerce.com/products/woocommerce-zapier/?utm_source=zapier&utm_medium=website&utm_campaign=integration
-- partner_name: Eventbrite
-  partner: eventbrite
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/eventbrite
-  direction: third-party
-  category: Event Management
-  partner_url: https://eventbrite.com/
-- partner_name: Cognito Forms
-  partner: cognito-forms
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/cognito-forms
-  direction: third-party
-  category: Forms & Surveys
-  partner_url: https://www.cognitoforms.com/
-- partner_name: RingCentral
-  partner: ringcentral
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/persistiq/integrations/ringcentral
-  direction: third-party
-  category: Phone & SMS
-  partner_url: http://www.ringcentral.com/
 - partner_name: Twilio Segment
   partner: segment
   partner_match: aggregator
@@ -531,6 +201,366 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: PostgreSQL
+  partner: postgresql
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/postgresql
+  direction: third-party
+  category: Databases
+  partner_url: http://www.postgresql.org/
+- partner_name: Copper
+  partner: copper
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/copper
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://copper.com/?utm_source=zapier&utm_medium=zapier
+- partner_name: Wishpond
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/wishpond
+  direction: third-party
+  category: Website Builders
+  partner_url: http://www.wishpond.com/
+- partner_name: Hunter
+  partner: hunter
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/hunter
+  direction: third-party
+  category: Contact Management
+  partner_url: https://hunter.io/
+- partner_name: GetProspect
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/getprospect
+  direction: third-party
+  category: Contact Management
+  partner_url: https://getprospect.com/
+- partner_name: Calendly
+  partner: calendly
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/calendly
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://calendly.com/?utm_medium=partner&utm_source=zapier&utm_campaign=main_partner_page&utm_content=main_inbound_link
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Kommo
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/kommo
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.kommo.com/integrations/zapier/?utm_source=&utm_campaign=integration&utm_medium=referral&utm_content=zapier
+- partner_name: Instapage
+  partner: instapage
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/instapage
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://instapage.com/
+- partner_name: Notion
+  partner: notion
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/notion
+  direction: third-party
+  category: Task Management
+  partner_url: https://www.notion.so/
+- partner_name: Capsule CRM
+  partner: capsule-crm
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/capsulecrm
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://capsulecrm.com/
+- partner_name: ActiveCampaign
+  partner: activecampaign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/activecampaign
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+- partner_name: DocSend
+  partner: docsend
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/docsend
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://www.docsend.com/
+- partner_name: Umso
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/umso
+  direction: third-party
+  category: Website Builders
+  partner_url: https://www.landen.co/
+- partner_name: Clio
+  partner: clio
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/clio
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: http://www.goclio.com/
+- partner_name: Microsoft Dynamics 365 CRM
+  partner: microsoft-dynamics-365
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/microsoft-dynamics-crm
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://dynamics.microsoft.com/
+- partner_name: QuickBooks Online
+  partner: quickbooks
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/quickbooks
+  direction: third-party
+  category: Accounting
+  partner_url: http://intuit.com/
+- partner_name: Keap
+  partner: keap
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/keap
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://keap.com/
+- partner_name: Attio
+  partner: attio
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/attio
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://attio.com/
+- partner_name: Ninja Forms
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/ninjaforms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://ninjaforms.com/extensions/zapier/
+- partner_name: 17hats
+  partner: 17hats
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/17hats
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.17hats.com/
+- partner_name: Slack
+  partner: slack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/slack
+  direction: third-party
+  category: Team Chat
+  partner_url: https://slack.com/
+- partner_name: Salespype
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/salespype-crm
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://salespype.com/
+- partner_name: Trello
+  partner: trello
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/trello
+  direction: third-party
+  category: Project Management
+  partner_url: https://trello.com/
+- partner_name: Shopify
+  partner: shopify
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/shopify
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.shopify.com/
+- partner_name: WooCommerce
+  partner: woocommerce
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/woocommerce
+  direction: third-party
+  category: eCommerce
+  partner_url: https://woocommerce.com/products/woocommerce-zapier/?utm_source=zapier&utm_medium=website&utm_campaign=integration
+- partner_name: Eventbrite
+  partner: eventbrite
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/eventbrite
+  direction: third-party
+  category: Event Management
+  partner_url: https://eventbrite.com/
+- partner_name: Cognito Forms
+  partner: cognito-forms
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/cognito-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.cognitoforms.com/
+- partner_name: RingCentral
+  partner: ringcentral
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/persistiq/integrations/ringcentral
+  direction: third-party
+  category: Phone & SMS
+  partner_url: http://www.ringcentral.com/
 templates:
 - title: Create PersistIQ prospects for new HubSpot contacts
   url: https://zapier.com/apps/hubspot/integrations/persistiq/17145/create-persistiq-prospects-for-new-hubspot-contacts
