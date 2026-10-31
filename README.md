@@ -1,4 +1,4 @@
-# persistiq
+# PersistIQ
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,6 +64,156 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-persistiq is a company surfaced as a portfolio company of point-nine and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+PersistIQ is a sales engagement platform for small teams to find new customers, start conversations, and personalize sales outreach at scale from one place. It combines prospect research (Chrome extension), multi-channel outreach (email, calls, tasks), campaign management with A/B testing, performance analytics, and CRM integrations. PersistIQ exposes a REST API (v1) for users, leads (prospects), lead statuses and fields, tags, campaigns (including duplication and inbox replies), activity events, Do Not Contact domains, and a webhook plugin carrying five events. It is specified by PersistIQ's own OpenAPI 3.0.1 document, served from the API host at /api-docs/v1/swagger.json. Authentication is a single company-wide API key sent in the x-api-key header, with page-number pagination and a documented 100 request/minute per-key rate limit.
 
-Backed by: point-nine — https://persistiq.com
+**Areas:** Company · Sales Engagement · Sales · Outbound · Email Outreach · CRM · Lead Management · Marketing · Webhook · SEP
+
+## PersistIQ on APIs.io
+
+Everything profiled for PersistIQ is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/persistiq/](https://apis.io/providers/persistiq/)** — or go straight to one of the APIs or properties below.
+
+### APIs (12)
+
+- [PersistIQ Campaigns API](https://apis.io/apis/persistiq/persistiq-campaigns-api/) — Outreach campaigns
+- [PersistIQ Do Not Contact Domains API](https://apis.io/apis/persistiq/persistiq-do-not-contact-domains-api/) — Suppressed domains
+- [PersistIQ Events API](https://apis.io/apis/persistiq/persistiq-events-api/) — Activity events
+- [PersistIQ Lead Fields API](https://apis.io/apis/persistiq/persistiq-lead-fields-api/) — Lead field definitions
+- [PersistIQ Lead Statuses API](https://apis.io/apis/persistiq/persistiq-lead-statuses-api/) — Lead status definitions
+- [PersistIQ Leads API](https://apis.io/apis/persistiq/persistiq-leads-api/) — Leads (prospects)
+- [PersistIQ Users API](https://apis.io/apis/persistiq/persistiq-users-api/) — Company users
+- [PersistIQ Campaign Leads API](https://apis.io/apis/persistiq/persistiq-campaign-leads-api/) — The Campaign Leads API from PersistIQ — 2 operation(s) for campaign leads.
+- [PersistIQ DNC Domains API](https://apis.io/apis/persistiq/persistiq-dnc-domains-api/) — The DNC Domains API from PersistIQ — 1 operation(s) for dnc domains.
+- [PersistIQ Replies API](https://apis.io/apis/persistiq/persistiq-replies-api/) — The Replies API from PersistIQ — 1 operation(s) for replies.
+- [PersistIQ Tags API](https://apis.io/apis/persistiq/persistiq-tags-api/) — The Tags API from PersistIQ — 1 operation(s) for tags.
+- [PersistIQ Webhook Plugin API](https://apis.io/apis/persistiq/persistiq-webhook-plugin-api/) — The Webhook Plugin API from PersistIQ — 1 operation(s) for webhook plugin.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Persistiq Webhooks](https://apis.io/asyncapis/persistiq/persistiq-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [persistiq](https://apis.io/servers/persistiq/persistiq/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Persistiq Agentic Access](https://apis.io/agentic-access/persistiq/persistiq-agentic-access/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [PersistIQ Campaigns API](https://apis.io/collections/persistiq/open-persistiq-campaigns-api/)
+- [PersistIQ Campaigns Do Not Contact Domains API](https://apis.io/collections/persistiq/open-persistiq-do-not-contact-domains-api/)
+- [PersistIQ Campaigns Events API](https://apis.io/collections/persistiq/open-persistiq-events-api/)
+- [PersistIQ Campaigns Lead Fields API](https://apis.io/collections/persistiq/open-persistiq-lead-fields-api/)
+- [PersistIQ Campaigns Lead Statuses API](https://apis.io/collections/persistiq/open-persistiq-lead-statuses-api/)
+- [PersistIQ Campaigns Leads API](https://apis.io/collections/persistiq/open-persistiq-leads-api/)
+- [PersistIQ Campaigns Users API](https://apis.io/collections/persistiq/open-persistiq-users-api/)
+
+#### Overlays (2)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Persistiq Api V1 Overlay](https://apis.io/overlays/persistiq/persistiq-api-v1-overlay/)
+- [Persistiq Openapi Overlay](https://apis.io/overlays/persistiq/persistiq-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Persistiq Authentication](https://apis.io/security/persistiq/persistiq-authentication/)
+- [Persistiq Domain Security](https://apis.io/security/persistiq/persistiq-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Persistiq Plans Pricing](https://apis.io/plans/persistiq/persistiq-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Persistiq Rate Limits](https://apis.io/rate-limits/persistiq/persistiq-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://persistiq.com)
+- [Documentation](https://apidocs.persistiq.com/)
+- [Getting started](http://help.persistiq.com/en/articles/466972-getting-started-guide)
+- [API reference](https://apidocs.persistiq.com/)
+- [Pricing](https://www.persistiq.com/pricing/)
+- [Sign up](https://persistiq.com/users/sign_up)
+- [Support](http://help.persistiq.com/en/)
+- [Blog](https://blog.persistiq.com/)
+- [Terms of service](https://www.persistiq.com/terms-of-service/)
+- [Privacy policy](https://www.persistiq.com/privacy/)
+- [GitHub](https://github.com/PersistIQ)
+
+## API Evangelist rating
+
+**Kin Score 49.6** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 54.2 |
+| Contract governance | 4.5 |
+| Operational transparency | 47.4 |
+| Developer ergonomics | 56.5 |
+| Access clarity | 44.7 |
+
+**Agent readiness 36.1** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | verified |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | mostly |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/persistiq/](https://apis.io/providers/persistiq/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for PersistIQ: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/persistiq/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
